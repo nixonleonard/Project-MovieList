@@ -61,7 +61,7 @@
             </div>
             <div class="form-group row  align-items-center my-2">
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="mx-5" style="padding:8px 13rem 8px 13rem; border-radius: 10px">Login-></button>
+                    <button class=" mx-5 btn btn-danger" type="submit" style="padding:8px 13rem 8px 13rem; border-radius: 10px">Login-></button>
                 </div>
             </div>
             <div class="row align-items-center">

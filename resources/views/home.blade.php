@@ -60,7 +60,19 @@
                 <button type="button" class="btn btn-secondary rounded-pill" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Secondary</button>
                 <button type="button" class="btn btn-secondary rounded-pill" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Secondary</button>
             </div>
-            {{-- content --}}
+
+            @auth
+
+                @if (Auth::user()->is_admin == 'admin')
+                <div class=" d-flex justify-content-end" style="padding-right: 2rem">
+                    <button type="button" class="btn btn-danger">+ Add Movie</button>
+                </div>
+                @endif
+
+                     {{-- content --}}
+            @endauth
+
+
 
         </div>
 

@@ -25,8 +25,25 @@ Route::get('/home', [HomeController::class, 'showHome']);
 // Route::get('/user', [HomeController::class, 'showHomeU']);
 
 Route::get('/register', [RegisterController::class, 'registerPage']);
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/login', [AuthController::class, 'loginPage']);
 Route::post('/login',[AuthController::class, 'login']);
 Route::get('/logout',[AuthController::class, 'logout']);
 Route::get('/admin', [AuthController::class, 'adminPage'])->middleware('security');
+
+Route::get('/createmovie', function () {
+    return view('createMovie');
+});
+
+Route::get('/editmovie', function () {
+    return view('editMovie');
+});
+
+Route::get('/createactor', function () {
+    return view('createActor');
+});
+
+Route::get('/editactor', function () {
+    return view('editActor');
+});

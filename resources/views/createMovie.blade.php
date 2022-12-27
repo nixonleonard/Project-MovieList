@@ -1,4 +1,4 @@
-@extends('layouts.layout_admin')
+@extends('layouts.layout')
 
 @section('content')
 <style>
@@ -15,7 +15,12 @@
         align-items: center;
         border-radius: 10px;
     }
+
+    label, h5{
+        color: white;
+    }
 </style>
+
 <div class="form-row my-4" style="padding-left: 11rem; padding-top: 3rem;">
     <h5>Create Movie</h5>
 </div>
@@ -41,6 +46,11 @@
             <option value="2">Two</option>
             <option value="3">Three</option>
           </select>
+      </div>
+
+      <div class="form-group col-md-10">
+        <label for="actor">Actor</label>
+        <input type="text" class="form-control" id="actor">
       </div>
 
       <div class="form-group col-md-10">

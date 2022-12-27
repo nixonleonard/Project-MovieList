@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -10,33 +12,26 @@ class RegisterController extends Controller
         return view('register');
     }
 
-    public function register(Request $request)
-    {
-        $request->validate([
+    public function register(Request $request){
+        $username = $request->username;
+        $email = $request->email;
+        $password = $request->password;
+        $confirm_password = $request->confirm_password;
+
+        $this->validate($request, [
             'username' => 'required|min:5|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'confirm_password' => 'required|min:6',
-            'password' => 'required|min:6'
+            'confirm_password' => 'required_with:password|same:password|min:6',
         ]);
 
-        // $data = $request->all();
-        // $check = $this->create($data);
+        $insert = [
+            'username' => $username,
+            'email' => $email,
+            'password' => $password,
+        ];
 
-        // return redirect("dashboard")->withSuccess('You have signed-in');
-        // $extension = $request->image->getClientOriginalExtension();
-        // $fileName = $request->name . '.' . $extension;
-        // $request->image->move('images', $fileName);
-
-        // $concert = new concert();
-        // $concert->organizer_id = $request->organizer_id;
-        // $concert->image = $fileName;
-        // $concert->name = $request->name;
-        // $concert->description = $request->description;
-        // $concert->date = $request->date;
-        // $concert->startTime = $request->startTime;
-        // $concert->endTime = $request->endTime;
-        // $concert->save();
-        return redirect('/home');
+        DB::table('users')->insert($insert);
+        return redirect('/login');
     }
 }

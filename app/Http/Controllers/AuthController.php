@@ -37,8 +37,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/login');
     }
-
-    public function adminPage(){
-        return view('home_admin');
-    }
 }
