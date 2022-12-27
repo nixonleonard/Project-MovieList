@@ -39,10 +39,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ActorSeeder::class,
-            CharacterSeeder::class,
+            MovieSeeder::class,
             GenreSeeder::class,
             MovieGenreSeeder::class,
-            MovieSeeder::class,
+            CharacterSeeder::class,
             WatchListSeeder::class
         ]);
     }

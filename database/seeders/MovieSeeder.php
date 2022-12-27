@@ -50,7 +50,7 @@ class MovieSeeder extends Seeder
             'title' => 'Nightcrawler',
             'description' => 'storage\synopsis\nightcrawler.txt',
             'director' => 'David Fincher',
-            'release_date' => '2014/00/05',
+            'release_date' => '2014/09/05',
             'thumbnail' => 'storage\images\nightcrawler\night_img.jpg',
             'background' => 'storage\images\nightcrawler\night.jpg'
         ]]);

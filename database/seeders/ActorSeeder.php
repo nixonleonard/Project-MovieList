@@ -22,7 +22,7 @@ class ActorSeeder extends Seeder
         // $table->string('image');
         // $table->float('popularity');
 
-        DB::table('movies')->insert([[
+        DB::table('actors')->insert([[
             'name' => 'Chris Hemsworth',
             'gender' => 'Male',
             'biography' => 'storage\synopsis\actors\chris.txt',
