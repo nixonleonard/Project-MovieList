@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
 
 class AuthController extends Controller
 {
@@ -20,18 +21,16 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials, true)){
             if($request->remember){
-                Cookie::queue('mycookie', $request->email, 5);
+                Cookie::queue('mycookie', $request->email, 120);
             }
             Session::put('mysession', $credentials);
 
-            // if($request->is_admin == 'admin'){
-            //     return redirect('/admin');
-            // }else{
-            return redirect()->back();
-            // }
+            return view('home');
         }
 
-        return 'fail';
+        if(!Auth::attempt($credentials, $request->remember_me)){
+            return redirect()->back()->withErrors(new MessageBag(['Email or Password is incorrect']));
+        }
     }
 
     public function logout(){

@@ -1,4 +1,4 @@
-@extends('layouts.layout_guest')
+@extends('layouts.layout')
 
 @section('content')
 <style>
@@ -14,6 +14,9 @@
         flex-direction: column;
         align-items: center;
         border-radius: 10px;
+    }
+    label, h5{
+        color: white;
     }
 </style>
 
@@ -54,7 +57,7 @@
             </div>
         </div>
         <div class="row align-items-center">
-            <div class=" d-flex justify-content-center row-md-3 ps-5">
+            <div class=" d-flex justify-content-center row-md-3 ps-5 text-white">
                 Already have an account? <a href="/login"> Login now!</a>
             </div>
         </div>
