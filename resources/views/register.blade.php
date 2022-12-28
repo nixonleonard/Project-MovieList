@@ -21,9 +21,10 @@
 </style>
 
 <div class="d-flex justify-content-center" style="padding:3rem; padding-bottom:2rem">
-    <h5>Hello, Welcome back to Movie List</h5>
+    <h5>Hello, Welcome back to </h5>
+    <img src="storage/images/MovieList.png" width="100" height="25" alt="">
 </div>
-<form action="/register" method="post" class="row align-items-center">
+<form action="/register" method="post" class="row align-items-center" style="padding-bottom: 2rem">
     @csrf
     <div class="align-items-center">
         <div class="form-group row d-flex justify-content-center">
@@ -58,7 +59,7 @@
         </div>
         <div class="row align-items-center">
             <div class=" d-flex justify-content-center row-md-3 ps-5 text-white">
-                Already have an account? <a href="/login"> Login now!</a>
+                Already have an account? <a href="/login" style="color: red">Login now!</a>
             </div>
         </div>
     </div>

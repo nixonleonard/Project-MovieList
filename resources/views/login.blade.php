@@ -27,7 +27,8 @@
 </style>
 
 <div class="d-flex justify-content-center" style="padding:3rem; padding-bottom:2rem">
-    <h5>Hello, Welcome back to Movie List</h5>
+    <h5>Hello, Welcome back to </h5>
+    <img src="storage/images/MovieList.png" width="100" height="25" alt="">
   </div>
     {{-- <div class="content col align-items-center">
     <form action="/login" method="post" >
@@ -38,7 +39,7 @@
         <input type="submit" value="Login">
     </form>
     </div> --}}
-    <form action="/login" method="post" class="row align-items-center" enctype="multipart/form-data">
+    <form action="/login" method="post" class="row align-items-center" enctype="multipart/form-data" style="padding-bottom: 8rem">
         @csrf
         <div class="align-items-center">
             <div class="form-group row d-flex justify-content-center">
@@ -66,7 +67,7 @@
             </div>
             <div class="row align-items-center">
                 <div class=" d-flex justify-content-center row-md-3 ps-5 text-white">
-                    Don't have an account? <a href="/register">Register now!</a>
+                    Don't have an account? <a href="/register" style="color: red">Register now!</a>
                 </div>
             </div>
         </div>

@@ -23,8 +23,8 @@ class RegisterController extends Controller
         $this->validate($request, [
             'username' => 'required|min:5|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'confirm_password' => 'required_with:password|same:password|min:6',
+            'password' => 'required|min:6|alpha_num',
+            'confirm_password' => 'required_with:password|same:password|min:6|alpha_num',
         ]);
 
         $hasedPass = Hash::make($password);
