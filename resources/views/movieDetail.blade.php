@@ -11,7 +11,7 @@
         <p class="d-inline-block">Cast</p>
 
         @foreach ($character as $c)
-            <img src="{{asset($c->image)}}" alt="">
+        <a href="/actordetail/{{$c->name}}"><img src="{{asset($c->image)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
             {{$c->name}}
             {{$c->cname}}
         @endforeach

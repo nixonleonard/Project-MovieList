@@ -65,14 +65,21 @@
         </div>
 
         <div class="text-light">
-            <i class="fas fa-film" style="color:white"></i>
-            <b>Show</b>
-
-            <form action="/home" class="d-flex justify-content-end">
-                <input type="text" placeholder="Search movie..." id = "search" name = "search">
-                <button type="submit">Search</button>
-            </form>
-            <hr>
+            <div>
+                <form action="/home" class="d-flex justify-content-end">
+                    <div class="input-group rounded d-flex justify-content-end" style="width: 300px; height: 30px" >
+                        <input type="search" name="search" id="search" class="form-control rounded bg-dark text-light border border-dark" placeholder="Search movie..." aria-label="Search"/>
+                        <button type="submit">Search</button>
+                    </div>
+                </form>
+                <div class="">
+                    <i class="fas fa-film" style="color:white"></i>
+                    <b>Show</b>
+                </div>
+                <div>
+                </div>
+            </div>
+                <hr>
 
             <div class="d-flex flex-wrap">
 
@@ -101,7 +108,7 @@
                 @foreach ($titles as $t)
                     <div class="col">
                         <div class="card text-white bg-transparent mb-3" style="width: 15rem;">
-                            <img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="...">
+                            <a href="/moviedetail/{{$m->id}}"><img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                             <div class="card-body px-4" style="height: 5rem;">
                             <h6 style="height: 1rem;">{{$t->title}} </h6>
                             <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>

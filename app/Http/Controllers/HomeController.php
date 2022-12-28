@@ -28,7 +28,7 @@ class HomeController extends Controller
         $movie = Movie::all();
         $genre = Genre::all();
         $search = $request->query('search');
-        $titles = Movie::where('title', 'LIKE', "%$search%")->paginate(3)->appends(['search' => $search]);
+        $titles = Movie::where('title', 'LIKE', "%$search%")->paginate(5)->appends(['search' => $search]);
         return view('home')->with(compact('movie','genre', 'titles'));
     }
 

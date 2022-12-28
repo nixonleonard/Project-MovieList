@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class ActorController extends Controller
 {
-    public function getAllActor(){
+    public function getAllActor(Request $request){
         // $id = $request->actor_id;
-        // $actor = Actor::all();
+        $search = $request->query('search');
+        $titles = Actor::where('name', 'LIKE', "%$search%")->paginate(5)->appends(['search' => $search]);
         $actor = DB::table('actors')->join('characters','characters.actor_id','=','actors.id')->join('movies','movies.id','=','characters.movie_id')->get();
-        return view('actor')->with(compact('actor'));
+        return view('actor')->with(compact('actor', 'titles'));
     }
 
     public function showActorDetail(Request $request){

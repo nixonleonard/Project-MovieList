@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-dark ">
         <div class="container-fluid mx-5">
-            <img src="storage/images/MovieList.png" width="100" height="27" alt="">
+            <a href="/home"><img src="storage/images/MovieList.png" width="100" height="27"></a>
             <form class="d-flex" role="search">
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     @auth

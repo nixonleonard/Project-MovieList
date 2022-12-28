@@ -5,9 +5,12 @@
 <div class="box p-5">
     <div class="d-flex justify-content-between" style="padding-right: 2rem">
         <p class="text-danger h3 pb-5">Actors</p>
-        <div class="input-group rounded " style="width: 200px; height: 30px" >
-            <input type="search" class="form-control rounded bg-dark text-light border border-dark" placeholder="Search" aria-label="Search"/>
-        </div>
+        <form action="/actor" class="d-flex justify-content-end">
+            <div class="input-group rounded d-flex justify-content-end" style="width: 300px; height: 30px" >
+                <input type="search" name="search" id="search" class="form-control rounded bg-dark text-light border border-dark" placeholder="Search movie..." aria-label="Search"/>
+                <button type="submit">Search</button>
+            </div>
+        </form>
 
     </div>
     {{-- @foreach ( as ) --}}
