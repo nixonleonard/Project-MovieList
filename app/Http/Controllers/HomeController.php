@@ -32,9 +32,9 @@ class HomeController extends Controller
 
     public function getMoviesFromGenre(Request $request)
     {
-        $genre_id = $request->route('name');
+        $genre_id = $request->route('genre_id');
         $movie = DB::table('movie_genres')->join('movies','movies.id','=','movie_genres.movie_id')->where('movie_genres.genre_id','=',$genre_id)->get();
-        $genre = DB::table('genres')->where('name','=',$genre_id)->first();
-        return view('home')->with(compact('movie','genre'));
+        $genre = DB::table('genres')->where('id','=',$genre_id)->first();
+        return view('home')->with(compact('genre','movie'));
     }
 }
