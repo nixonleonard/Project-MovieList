@@ -19,7 +19,7 @@ class CreateCharactersTable extends Migration
             $table->foreign("actor_id")->references("id")->on("actors")->onUpdate("cascade")->onDelete("cascade");
             $table->unsignedBigInteger('movie_id');
             $table->foreign("movie_id")->references("id")->on("movies")->onUpdate("cascade")->onDelete("cascade");
-            $table->string('name');
+            $table->string('cname');
         });
     }
 

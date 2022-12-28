@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
 use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\MovieGenre;
@@ -22,19 +23,31 @@ class HomeController extends Controller
     //     return view('home');
     // }
 
-    public function getMovieGenre()
+    public function getMovieGenre(Request $request)
     {
         $movie = Movie::all();
         $genre = Genre::all();
-
-        return view('home',["movie"=>$movie, "genre"=>$genre]);
+        $search = $request->query('search');
+        $titles = Movie::where('title', 'LIKE', "%$search%")->paginate(3)->appends(['search' => $search]);
+        return view('home', compact("movie", "genre", "titles"));
     }
 
     public function getMoviesFromGenre(Request $request)
     {
-        $genre_id = $request->route('genre_id');
-        $movie = DB::table('movie_genres')->join('movies','movies.id','=','movie_genres.movie_id')->where('movie_genres.genre_id','=',$genre_id)->get();
-        $genre = DB::table('genres')->where('id','=',$genre_id)->first();
-        return view('home')->with(compact('genre','movie'));
+        $movie = Movie::all();
+        $genre = Genre::all();
+        $genre_id = $request->genre_id;
+        $titles = DB::table('movie_genres')->join('movies','movies.id','=','movie_genres.movie_id')->where('movie_genres.genre_id','=',$genre_id)->get();
+        return view('home')->with(compact('movie','genre', 'titles'));
     }
+
+    public function showMovieDetail(Request $request){
+        $id = $request->movie_id;
+        $movie = Movie::where('id','=',$id)->first();
+        $nmovie = Movie::where('id','!=',$id)->get();
+        $character = DB::table('characters')->where('movie_id','=',$id)->join('actors', 'characters.actor_id','=','actors.id')->get();
+        return view('movieDetail')->with(compact('movie', 'nmovie','character'));
+    }
+
+
 }

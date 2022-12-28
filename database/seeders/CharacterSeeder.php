@@ -17,77 +17,77 @@ class CharacterSeeder extends Seeder
         DB::table('characters')->insert([[
             'actor_id' => 6,
             'movie_id' => 1,
-            'name' => 'Tony Stark / Iron Man'
+            'cname' => 'Tony Stark / Iron Man'
         ],
         [
             'actor_id' => 1,
             'movie_id' => 1,
-            'name' => 'Thor'
+            'cname' => 'Thor'
         ],
         [
             'actor_id' => 9,
             'movie_id' => 1,
-            'name' => 'Natasha Romanoff / Black Widow'
+            'cname' => 'Natasha Romanoff / Black Widow'
         ],
         [
             'actor_id' => 8,
             'movie_id' => 2,
-            'name' => 'Jake Sully'
+            'cname' => 'Jake Sully'
         ],
         [
             'actor_id' => 12,
             'movie_id' => 2,
-            'name' => 'Neytiri'
+            'cname' => 'Neytiri'
         ],
         [
             'actor_id' => 3,
             'movie_id' => 2,
-            'name' => 'Colonel Miles Quaritch'
+            'cname' => 'Colonel Miles Quaritch'
         ],
         [
             'actor_id' => 11,
             'movie_id' => 3,
-            'name' => 'Meena (voice)'
+            'cname' => 'Meena (voice)'
         ],
         [
             'actor_id' => 7,
             'movie_id' => 3,
-            'name' => 'Rosita(Voice)'
+            'cname' => 'Rosita(Voice)'
         ],
         [
             'actor_id' => 9,
             'movie_id' => 3,
-            'name' => 'Ash(Voice)'
+            'cname' => 'Ash(Voice)'
         ],
         [
             'actor_id' => 2,
             'movie_id' => 4,
-            'name' => 'Robert Graysmith'
+            'cname' => 'Robert Graysmith'
         ],
         [
             'actor_id' => 6,
             'movie_id' => 4,
-            'name' => 'Paul Avery'
+            'cname' => 'Paul Avery'
         ],
         [
             'actor_id' => 4,
             'movie_id' => 4,
-            'name' => 'Inspector David Toschi'
+            'cname' => 'Inspector David Toschi'
         ],
         [
             'actor_id' => 2,
             'movie_id' => 5,
-            'name' => 'Louis Bloom'
+            'cname' => 'Louis Bloom'
         ],
         [
             'actor_id' => 5,
             'movie_id' => 5,
-            'name' => 'Security Guard'
+            'cname' => 'Security Guard'
         ],
         [
             'actor_id' => 10,
             'movie_id' => 5,
-            'name' => 'Sharon Tay'
+            'cname' => 'Sharon Tay'
         ]
     ]);
     }

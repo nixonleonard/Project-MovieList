@@ -67,13 +67,20 @@
         <div class="text-light">
             <i class="fas fa-film" style="color:white"></i>
             <b>Show</b>
+
+            <form action="/home" class="d-flex justify-content-end">
+                <input type="text" placeholder="Search movie..." id = "search" name = "search">
+                <button type="submit">Search</button>
+            </form>
             <hr>
+
             <div class="d-flex flex-wrap">
 
-                @foreach ($genre as $g)
-                    <a href="/home/{{$g->id}}" style="color: #FFFFFF;
-                        text-decoration: none;"><button type="button" class="btn btn-secondary rounded-pill m-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 3rem; --bs-btn-font-size: .75rem;">{{$g->name}}</button></a>
-                @endforeach
+            @foreach ($genre as $g)
+                <a href="/genre/{{$g->id}}">
+                    <button type="button" class="btn btn-secondary rounded-pill m-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 3rem; --bs-btn-font-size: .75rem;">{{$g->name}}</button>
+                </a>
+            @endforeach
 
             </div>
             <br>
@@ -91,13 +98,13 @@
             @endif
             @endauth
             <div class="card-group px-5" style="padding-top: 2rem">
-                @foreach ($movie as $m)
+                @foreach ($titles as $t)
                     <div class="col">
                         <div class="card text-white bg-transparent mb-3" style="width: 15rem;">
-                            <img src="{{asset($m->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="...">
+                            <img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="...">
                             <div class="card-body px-4" style="height: 5rem;">
-                            <h6 style="height: 1rem;">{{$m->title}} </h6>
-                            <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($m->release_date))}} </p>
+                            <h6 style="height: 1rem;">{{$t->title}} </h6>
+                            <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
                             </div>
                         </div>
                     </div>
