@@ -21,7 +21,7 @@
     }
 </style>
 
-<div class="form-row my-4" style="padding-left: 11rem; padding-top: 3rem;">
+<div class="form-row" style="padding-left: 11rem; padding-top: 3rem;">
     <h5>Create Movie</h5>
 </div>
 

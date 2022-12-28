@@ -10,7 +10,7 @@ class Actor extends Model
     use HasFactory;
 
     public function character(){
-        return $this->hasMany(character::class);
+        return $this->hasMany(Character::class);
     }
 }
 

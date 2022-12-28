@@ -9,11 +9,11 @@ class Character extends Model
 {
     use HasFactory;
     public function actors(){
-        return $this->belongsTo(actors::class);
+        return $this->belongsTo(Actors::class);
     }
 
     public function movies(){
-        return $this->belongsTo(movies::class);
+        return $this->belongsTo(Movies::class);
     }
 
 }

@@ -36,7 +36,17 @@
             <i class="fas fa-fire-alt" style="color:white"></i>
             <b>Popular</b>
             <hr>
-            {{-- content --}}
+            @foreach ($movie as $m)
+                <div class="col-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{asset($m->thumbnail)}}" class="card-img-top" style = "height:30rem;" alt="...">
+                        <div class="card-body" style="height: 15rem;">
+                        <h5 class="card-title" style="height: 5rem;">{{$m->title}} </h5>
+                        <h5 class="card-title" style="height: 2rem;">{{date('Y', strtotime($m->release_date))}} </h5>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
         <div class="text-light ">
             <i class="fas fa-film" style="color:white"></i>

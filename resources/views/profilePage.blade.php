@@ -65,7 +65,7 @@
 
                         <div class="form-group col-md-11">
                             <button type="submit" style="margin-top:20px; margin-left:22px;" class="btn btn-primary form-control">Save Changes</button>
-                          </div>
+                        </div>
 
                     </div>
                 </form>

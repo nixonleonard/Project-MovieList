@@ -25,7 +25,7 @@ class AuthController extends Controller
             }
             Session::put('mysession', $credentials);
 
-            return view('home');
+            return redirect('/home');
         }
 
         if(!Auth::attempt($credentials, $request->remember_me)){

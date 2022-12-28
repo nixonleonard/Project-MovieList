@@ -27,17 +27,17 @@
                                     <a class="nav-link active text-light" aria-current="page" href="/home">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active text-light" href="#">Movies</a>
+                                    <a class="nav-link active text-light" href="/home">Movies</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active text-light" href="#">Actors</a>
+                                    <a class="nav-link active text-light" href="/actor">Actors</a>
                                 </li>
                                 <li class="nav-item dropstart">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color: white">
                                         <i class="bi bi-person-circle" style="color: white"></i>
                                     </a>
                                     <ul class="dropdown-menu">
-                                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                                      <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                                       <li><a class="dropdown-item" href="/logout">Logout</a></li>
                                     </ul>
                                   </li>
@@ -47,23 +47,23 @@
                         @if (Auth::user()->is_admin == 'member')
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                                    <a class="nav-link active text-light" aria-current="page" href="/home">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active text-light" href="#">Movies</a>
+                                    <a class="nav-link active text-light" href="/home">Movies</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active text-light" href="#">Actors</a>
+                                    <a class="nav-link active text-light" href="/actor">Actors</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active text-light" href="#">My WatchList</a>
+                                    <a class="nav-link active text-light" href="/mywatchlist">My WatchList</a>
                                 </li>
                                 <li class="nav-item dropstart">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color: white">
                                         <i class="bi bi-person-circle" style="color: white"></i>
                                     </a>
                                     <ul class="dropdown-menu">
-                                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                                      <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                                       <li><a class="dropdown-item" href="/logout">Logout</a></li>
                                     </ul>
                                   </li>
@@ -73,13 +73,13 @@
                         @else
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active text-light" aria-current="page" href="/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active text-light" href="#">Movies</a>
+                                <a class="nav-link active text-light" href="/home">Movies</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active text-light" href="#">Actors</a>
+                                <a class="nav-link active text-light" href="/actor">Actors</a>
                             </li>
                             <li class="nav-item mx-3">
                                 <a class="btn btn-primary" href="/register">Register</a>
@@ -98,7 +98,7 @@
         @yield('content')
     </div>
 
-    <footer class="bg-dark text-center">
+    <footer class="bg-dark text-center position-relative fixed-bottom">
         <img src="storage/images/MovieList.png" width="170" height="50" alt="">
         <div class="text-light p-2">
             <img src="storage/images/MovieList.png" width="70" height="17" alt="">

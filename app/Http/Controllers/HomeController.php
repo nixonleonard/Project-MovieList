@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,7 +21,7 @@ class HomeController extends Controller
 
     public function getAllMovie()
     {
-        $movie = movies::all();
-        return view('home', compact('movie'));
+        $movie = Movie::all();
+        return view('home',["movie"=>$movie]);
     }
 }

@@ -10,15 +10,15 @@ class Movie extends Model
     use HasFactory;
 
     public function watchList(){
-        return $this->belongsTo(watchList::class);
+        return $this->belongsTo(WatchList::class);
     }
 
     public function character(){
-        return $this->hasMany(character::class);
+        return $this->hasMany(Character::class);
     }
 
     public function movieGenres(){
-        return $this->belongsToMany(movieGenres::class);
+        return $this->belongsToMany(MovieGenres::class);
     }
 
 }
