@@ -57,3 +57,11 @@ Route::get('/actor', function () {
 Route::get('/myprofile', function(){
     return view('profilePage');
 });
+
+Route::get('/actordetail', function(){
+    return view('actorDetail');
+});
+
+Route::get('/moviedetail', function(){
+    return view('movieDetail');
+});
