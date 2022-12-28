@@ -47,3 +47,11 @@ Route::get('/createactor', function () {
 Route::get('/editactor', function () {
     return view('editActor');
 });
+
+Route::get('/mywatchlist', function () {
+    return view('myWatchList');
+});
+
+Route::get('/actor', function () {
+    return view('actor');
+});
