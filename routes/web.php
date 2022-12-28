@@ -21,8 +21,6 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'showHome']);
-// Route::get('/admin', [HomeController::class, 'showHomeA']);
-// Route::get('/user', [HomeController::class, 'showHomeU']);
 
 Route::get('/register', [RegisterController::class, 'registerPage']);
 Route::post('/register', [RegisterController::class, 'register']);

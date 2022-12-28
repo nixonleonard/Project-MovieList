@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -25,10 +27,14 @@ class RegisterController extends Controller
             'confirm_password' => 'required_with:password|same:password|min:6',
         ]);
 
+        $hasedPass = Hash::make($password);
+
         $insert = [
             'username' => $username,
             'email' => $email,
-            'password' => $password,
+            'password' => $hasedPass,
+            "created_at" => Carbon::now(), # new \Datetime()
+            "updated_at" => Carbon::now(),  # new \Datetime()
         ];
 
         DB::table('users')->insert($insert);
