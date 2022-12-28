@@ -29,7 +29,7 @@ class HomeController extends Controller
         $genre = Genre::all();
         $search = $request->query('search');
         $titles = Movie::where('title', 'LIKE', "%$search%")->paginate(3)->appends(['search' => $search]);
-        return view('home', compact("movie", "genre", "titles"));
+        return view('home')->with(compact('movie','genre', 'titles'));
     }
 
     public function getMoviesFromGenre(Request $request)

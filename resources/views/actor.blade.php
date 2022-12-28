@@ -11,12 +11,21 @@
 
     </div>
     {{-- @foreach ( as ) --}}
-    <div class="card bg-dark text-light" style="width: 10rem;">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+    <div class="d-flex flex-wrap justify-content-center">
+        {{-- <div class="card-group px-5"> --}}
+            @foreach ($actor as $a)
+            <div class="card bg-dark text-light m-3">
+                    <div class="card text-white bg-transparent mb-5 " style="width: 15rem;">
+                        <a href="/actordetail/{{$a->name}}"><img src="{{asset($a->image)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
+                        <div class="card-body px-4" style="height: 5rem;">
+                        <h6 style="height: 1rem;">{{$a->name}} </h6>
+                        <p class="text-muted" style="height: 2rem;">{{$a->title}} </p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
       </div>
+    </div>
     {{-- @endforeach --}}
 
 </div>

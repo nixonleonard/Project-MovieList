@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
@@ -25,6 +26,9 @@ Route::get('/home', [HomeController::class, 'getMovieGenre']);
 Route::get('/genre/{genre_id}', [HomeController::class, 'getMoviesFromGenre']);
 
 Route::get('/moviedetail/{movie_id}', [HomeController::class, 'showMovieDetail']);
+
+Route::get('/actor', [ActorController::class, 'getAllActor']);
+Route::get('/actordetail/{actor_id}', [ActorController::class, 'showActorDetail']);
 
 Route::get('/register', [RegisterController::class, 'registerPage']);
 Route::post('/register', [RegisterController::class, 'register']);
@@ -54,9 +58,9 @@ Route::get('/mywatchlist', function () {
     return view('myWatchList');
 });
 
-Route::get('/actor', function () {
-    return view('actor');
-});
+// Route::get('/actor', function () {
+//     return view('actor');
+// });
 
 Route::get('/myprofile', function(){
     return view('profilePage');
