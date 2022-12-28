@@ -94,11 +94,11 @@
           </div>
         </div>
       </nav>
-      <div class="divContent" style="height: 1000px; background-color:#000000;">
+      <div class="divContent" style="background-color:#000000;">
         @yield('content')
     </div>
 
-    <footer class="bg-dark text-center position-relative fixed-bottom">
+    <footer class="bg-dark text-center" style="bottom: 0; position: relative;">
         <img src="storage/images/MovieList.png" width="170" height="50" alt="">
         <div class="text-light p-2">
             <img src="storage/images/MovieList.png" width="70" height="17" alt="">

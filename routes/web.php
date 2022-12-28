@@ -20,7 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [HomeController::class, 'getAllMovie']);
+Route::get('/home', [HomeController::class, 'getMovieGenre']);
+// Route::get('/home', [HomeController::class, 'getAllGenre']);
+// Route::get('/home', [HomeController::class, 'getAllMovie']);
 
 Route::get('/register', [RegisterController::class, 'registerPage']);
 Route::post('/register', [RegisterController::class, 'register']);

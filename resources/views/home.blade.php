@@ -1,6 +1,19 @@
 @extends('layouts.layout')
 
 @section('content')
+<style>
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+</style>
 
     <div class="box">
         <div id="carouselExampleIndicators" class="carousel slide" style="background-image: linear-gradient(to right,black,black 0%,black 0%)" data-bs-ride="true">
@@ -32,47 +45,56 @@
               </div>
             </div>
         </div>
-        <div class="text-light">
+        <div class="text-light p-3">
             <i class="fas fa-fire-alt" style="color:white"></i>
-            <b>Popular</b>
+            <b class="p4">Popular</b>
             <hr>
-            @foreach ($movie as $m)
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{asset($m->thumbnail)}}" class="card-img-top" style = "height:30rem;" alt="...">
-                        <div class="card-body" style="height: 15rem;">
-                        <h5 class="card-title" style="height: 5rem;">{{$m->title}} </h5>
-                        <h5 class="card-title" style="height: 2rem;">{{date('Y', strtotime($m->release_date))}} </h5>
+            <div class="card-group px-5">
+                @foreach ($movie as $m)
+                    <div class="col">
+                        <div class="card text-white bg-transparent mb-3" style="width: 15rem;">
+                            <img src="{{asset($m->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="...">
+                            <div class="card-body px-4" style="height: 5rem;">
+                            <h6 style="height: 1rem;">{{$m->title}} </h6>
+                            <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($m->release_date))}} </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-        <div class="text-light ">
+
+        <div class="text-light">
             <i class="fas fa-film" style="color:white"></i>
             <b>Show</b>
             <hr>
-            {{-- @foreach ( as )
+            <div class="d-flex flex-wrap">
+                @foreach ($genre as $g)
+                    <button type="button" class="btn btn-secondary rounded-pill m-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 3rem; --bs-btn-font-size: .75rem;">{{$g->name}}</button>
+                @endforeach
 
-            @endforeach --}}
-            <div class="d-flex justify-content-around" >
-                <button type="button" class="btn btn-secondary rounded-pill" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 3rem; --bs-btn-font-size: .75rem;">Secondary</button>
-                <button type="button" class="btn btn-secondary rounded-pill">Secondary</button>
-                <button type="button" class="btn btn-secondary rounded-pill">Secondary</button>
-                <button type="button" class="btn btn-secondary rounded-pill">Secondary</button>
-                <button type="button" class="btn btn-secondary rounded-pill">Secondary</button>
-                <button type="button" class="btn btn-secondary rounded-pill">Secondary</button>
             </div>
             <br>
-            <div>
-                <p>Sort by</p>
-                <button type="button" class="btn btn-secondary rounded-pill" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Secondary</button>
-                <button type="button" class="btn btn-secondary rounded-pill" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Secondary</button>
-                <button type="button" class="btn btn-secondary rounded-pill" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Secondary</button>
+            <div class="d-flex flex-wrap">
+                <h6 style="padding-right: 20px">Sort by</h6>
+                <button type="button" class="btn btn-secondary rounded-pill mx-2 px-4" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;">Latest</button>
+                <button type="button" class="btn btn-secondary rounded-pill mx-2 px-4" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;">A-Z</button>
+                <button type="button" class="btn btn-secondary rounded-pill mx-2 px-4" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;">Z-A</button>
             </div>
-
+            <div class="card-group px-5" style="padding-top: 2rem">
+                @foreach ($movie as $m)
+                    <div class="col">
+                        <div class="card text-white bg-transparent mb-3" style="width: 15rem;">
+                            <img src="{{asset($m->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="...">
+                            <div class="card-body px-4" style="height: 5rem;">
+                            <h6 style="height: 1rem;">{{$m->title}} </h6>
+                            <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($m->release_date))}} </p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
             @auth
-
                 @if (Auth::user()->is_admin == 'admin')
                 <div class=" d-flex justify-content-end" style="padding-right: 2rem">
                     <button type="button" class="btn btn-danger">+ Add Movie</button>
