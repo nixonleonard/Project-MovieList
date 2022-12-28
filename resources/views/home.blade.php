@@ -70,7 +70,7 @@
             <hr>
             <div class="d-flex flex-wrap">
                 @foreach ($genre as $g)
-                    <button type="button" class="btn btn-secondary rounded-pill m-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 3rem; --bs-btn-font-size: .75rem;">{{$g->name}}</button>
+                    <button type="button" class="btn btn-secondary rounded-pill m-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 3rem; --bs-btn-font-size: .75rem;" href="/home/{{$g->id}}">{{$g->name}}</button>
                 @endforeach
 
             </div>

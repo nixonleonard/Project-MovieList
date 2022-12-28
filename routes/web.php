@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'getMovieGenre']);
+Route::get('/home/{id}', [HomeController::class, 'getMoviesFromGenre']);
 // Route::get('/home', [HomeController::class, 'getAllGenre']);
 // Route::get('/home', [HomeController::class, 'getAllMovie']);
 
