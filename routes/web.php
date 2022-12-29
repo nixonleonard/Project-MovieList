@@ -46,14 +46,17 @@ Route::get('/createmovie', [RegisterController::class, 'showGenre'])->middleware
 
 Route::get('/createactor', [ActorController::class, 'insertActorPage'])->middleware('authAdmin');
 Route::post('/createactor', [ActorController::class, 'insertActor'])->middleware('authAdmin');
+// Route::get('/editactor', [ActorController::class, 'insertActorPage'])->middleware('authAdmin');
+Route::get('/editactor/{actor_id}', [ActorController::class, 'editActors'])->middleware('authAdmin');
+Route::post('/editactor/{actor_name}', [ActorController::class, 'editedActors'])->middleware('authAdmin');
 
 Route::get('/editmovie', function () {
     return view('editMovie');
 });
 
-Route::get('/editactor', function () {
-    return view('editActor');
-});
+// Route::get('/editactor', function () {
+//     return view('editActor');
+// });
 
 Route::get('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
 Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
@@ -61,10 +64,10 @@ Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('
 
 Route::get('/myprofile',[AuthController::class, 'myProfilePage']);
 
-Route::get('/actordetail', function(){
-    return view('actorDetail');
-});
+// Route::get('/actordetail', function(){
+//     return view('actorDetail');
+// });
 
-Route::get('/moviedetail', function(){
-    return view('movieDetail');
-});
+// Route::get('/moviedetail', function(){
+//     return view('movieDetail');
+// });
