@@ -40,7 +40,7 @@ class ActorController extends Controller
 
     public function insertActor(Request $request){
 
-        // dd($request);
+        dd($request);
         $name = $request->name;
         $gender = $request->gender;
         $biography = $request->biography;
