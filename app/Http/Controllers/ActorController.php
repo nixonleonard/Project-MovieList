@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Actor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Storage;
 
 class ActorController extends Controller
 {
@@ -30,5 +33,48 @@ class ActorController extends Controller
         $id = $request->actor_id;
         Actor::where('id', '=', $id)->delete();
         return redirect('/home');
+    }
+
+    public function insertActorPage(){
+        return view('createActor');
+    }
+
+    public function insertActor(Request $request){
+
+        // dd($request);
+        $name = $request->name;
+        $gender = $request->gender;
+        $biography = $request->biography;
+        $dob = $request->dob;
+        $pob = $request->pob;
+        $image = $request->image;
+        $popularity = $request->popularity;
+
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'gender' => 'required',
+            'biography' => 'required|min:10',
+            'dob' => 'required',
+            'pob' => 'required',
+            'image' => 'required|mimes:jpeg,jpg,png,gif',
+            'popularity' => 'required|numeric',
+        ]);
+
+        Storage::putFileAs('/public/storage/images', $image, $image->getClientOriginalName());
+        Actor::create([
+            'name' => $name,
+            'gender' => $gender,
+            'biography' => $biography,
+            'DOB' => $dob,
+            'POB' => $pob,
+            'image' => 'storage/images/'.$image->getClientOriginalName(),
+            'popularity' => $popularity,
+        ]);
+
+        return redirect('/actor');
+        // return view('test')->with(compact('productName', 'productCategory', 'productDetail', 'productPrice', 'productImage'));
+
+        // DB::table('users')->insert($insert);
+        // return redirect('/login');
     }
 }

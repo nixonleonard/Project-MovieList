@@ -23,16 +23,17 @@
     <h5>Add Actor</h5>
 </div>
 
-<form style="padding-bottom: 3rem">
+<form action="/createactor" method="post" style="padding-bottom: 3rem" enctype="multipart/form-data">
+    @csrf
     <div class="form-row" style="padding-left: 11rem">
       <div class="form-group col-md-10">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name">
+        <input type="text" class="form-control" name="name" id="name">
       </div>
 
       <div class="form-group col-md-10">
         <label for="gender">Gender</label>
-        <select class="form-control custom-select-lg mb-3" style="margin-top:10px; margin-left:10px;" >
+        <select class="form-control custom-select-lg mb-3" style="margin-top:10px; margin-left:10px;" name="gender">
             <option selected>Select an option</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -40,27 +41,27 @@
       </div>
       <div class="form-group col-md-10">
         <label for="biography">Biography</label>
-        <textarea type="text" style="margin-top:10px; margin-left:10px;" class="form-control" id="biography" rows="5"></textarea>
+        <textarea type="text" name="biography" style="margin-top:10px; margin-left:10px;" class="form-control" id="biography" rows="5"></textarea>
       </div>
 
       <div class="form-group col-md-10 col-form-label">
         <label for="dob">Date of Birth</label>
-        <input type="date" class="form-control" id="dob">
+        <input type="date" class="form-control" name="dob" id="dob">
       </div>
 
       <div class="form-group col-md-10">
         <label for="pob">Place of Birth</label>
-        <input type="text" class="form-control" id="pob">
+        <input type="text" class="form-control" name="pob" id="pob">
       </div>
 
       <div class="form-group col-md-10">
         <label for="image">Image URL</label>
-        <input type="file" class="form-control" id="image">
+        <input type="file" class="form-control" name="image" id="image">
       </div>
 
       <div class="form-group col-md-10">
         <label for="popularity">Popularity</label>
-        <input type="number" step="0.01" class="form-control" id="popularity">
+        <input type="number" step="0.01" name="popularity" class="form-control" id="popularity">
       </div>
 
       <div class="form-group col-md-10">
@@ -69,6 +70,8 @@
 
     </div>
   </form>
+
+
 
 @endsection
 

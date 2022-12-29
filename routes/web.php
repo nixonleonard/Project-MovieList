@@ -44,13 +44,11 @@ Route::get('/admin', [AuthController::class, 'adminPage'])->middleware('security
 Route::get('/createmovie', [RegisterController::class, 'showGenre']);
 // Route::post('/register', [RegisterController::class, 'register']);
 
+Route::get('/createactor', [ActorController::class, 'insertActorPage']);
+Route::post('/createactor', [ActorController::class, 'insertActor']);
 
 Route::get('/editmovie', function () {
     return view('editMovie');
-});
-
-Route::get('/createactor', function () {
-    return view('createActor');
 });
 
 Route::get('/editactor', function () {
@@ -60,13 +58,6 @@ Route::get('/editactor', function () {
 Route::get('/mywatchlist',[WatchListController::class, 'search']);
 Route::post('/mywatchlist',[WatchListController::class, 'search']);
 
-// Route::get('/mywatchlist', function () {
-//     return view('myWatchList');
-// });
-
-// Route::get('/actor', function () {
-//     return view('actor');
-// });
 
 Route::get('/myprofile', function(){
     return view('profilePage');

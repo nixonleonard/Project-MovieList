@@ -9,6 +9,18 @@ class Actor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'gender',
+        'biography',
+        'DOB',
+        'POB',
+        'image',
+        'popularity'
+    ];
+
+    public $timestamps = false;
+
     public function character(){
         return $this->hasMany(Character::class);
     }
