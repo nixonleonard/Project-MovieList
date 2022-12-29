@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-dark ">
         <div class="container-fluid mx-5">
-            <a href="/home"><img src="storage/images/MovieList.png" width="100" height="27"></a>
+            <a href="/home"><img src="{{asset('storage/images/MovieList.png')}}" width="100" height="27"></a>
             <form class="d-flex" role="search">
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     @auth
@@ -99,9 +99,9 @@
     </div>
 
     <footer class="bg-dark text-center" style="bottom: 0; position: relative;">
-        <img src="storage/images/MovieList.png" width="170" height="50" alt="">
+        <img src="{{asset('storage/images/MovieList.png')}}" width="170" height="50" alt="">
         <div class="text-light p-2">
-            <img src="storage/images/MovieList.png" width="70" height="17" alt="">
+            <img src="{{asset('storage/images/MovieList.png')}}" width="70" height="17" alt="">
             is a website that contains list of movie</div>
             <button type="button" class="btn btn-secondary rounded-circle">
                 <i class="fab fa-twitter"></i>
@@ -122,7 +122,7 @@
         <div class="text-light p-2">Privacy  |  Terms of Service  |  Contact Us  |  About Us</div>
         <div class="text-center text-white py-2">
             Copyright © 2021
-            <img src="storage/images/MovieList.png" width="70" height="17" alt="">
+            <img src="{{asset('storage/images/MovieList.png')}}" width="70" height="17" alt="">
             All Right Reserved
         </div>
     </footer>
