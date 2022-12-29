@@ -25,7 +25,7 @@
     <h5>Create Movie</h5>
 </div>
 
-<form>
+<form style="padding-bottom: 3rem">
     <div class="form-row" style="padding-left: 11rem">
       <div class="form-group col-md-10">
         <label for="title">Title</label>
@@ -74,7 +74,7 @@
       </div>
 
       <div class="form-group col-md-10">
-        <button type="submit" style="margin-top:20px; margin-left:10px;" class="btn btn-primary form-control">Create</button>
+        <button type="submit" style="margin-top:20px; margin-left:10px;" class="btn btn-danger form-control">Create</button>
       </div>
 
     </div>

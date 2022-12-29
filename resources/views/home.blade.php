@@ -24,22 +24,32 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <div class="position-absolute text-light" style="margin-left: 100px; margin-top:300px">
-                    <div class="fs-8">judul film | judul film</div>
-                    <b class="fs-1">judul film</b>
-                    <p>judul film</p>
+                <div class="position-absolute text-light container" style="margin-left: 100px; margin-top:300px">
+                    <div class="fs-8">Action Adventure Drama | 2019</div>
+                    <b class="fs-1">Avengers : Endgame</b>
+                    <div class="card bg-transparent" style="width: 35rem; border:none;">
+                        <p class="col">After the devastating events of Avengers: Infinity War (2018), the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos's actions and undo the chaos to the universe, no matter what consequences may be in store, and no matter who they face...</p>
+                    </div>
                 </div>
                 <img src="{{ url('storage/images/avangers.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="" />
               </div>
               <div class="carousel-item">
-                <div class="position-absolute text-light fs-5">
-                    <p>judul film</p>
+                <div class="position-absolute text-light container" style="margin-left: 100px; margin-top:300px">
+                    <div class="fs-8">Action Adventure Fantasy | 2009</div>
+                    <b class="fs-1">Avatar</b>
+                    <div class="card bg-transparent" style="width: 35rem; border:none;">
+                        <p class="col">When his brother is killed in a robbery, paraplegic Marine Jake Sully decides to take his place in a mission on the distant world of Pandora. There he learns of greedy corporate figurehead Parker Selfridge's intentions of driving off the native humanoid "Na'vi" in order to mine for the precious material scattered throughout their rich woodland.</p>
+                    </div>
                 </div >
                 <img src="{{ url('storage/images/avatar.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="...">
               </div >
               <div class="carousel-item">
-                <div class="position-absolute text-light fs-5">
-                    <p>judul film</p>
+                <div class="position-absolute text-light container" style="margin-left: 100px; margin-top:300px">
+                    <div class="fs-8">Animation Adventure Comedy Family Musical | 2009</div>
+                    <b class="fs-1">Sing 2</b>
+                    <div class="card bg-transparent" style="width: 35rem; border:none;">
+                        <p class="col">With his theatrical company a local success, Buster Moon is dreaming of bigger things. Unfortunately, when a talent scout dismisses their work as inadequate for the big time, Buster is driven to prove her wrong. With that goal in mind, Buster inspires his players to gamble everything to sneak into a talent audition in Redshore City for the demanding entertainment mogul Jimmy Crystal.</p>
+                    </div>
                 </div>
                 <img src="{{ url('storage/images/sing.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="...">
               </div>
@@ -52,7 +62,7 @@
             <div class="card-group px-5">
                 @foreach ($movie as $m)
                     <div class="col">
-                        <div class="card text-white bg-transparent mb-3" style="width: 15rem;">
+                        <div class="card text-white bg-transparent mb-3" style="width: 15rem; border:none;">
                             <a href="/moviedetail/{{$m->id}}"><img src="{{asset($m->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                             <div class="card-body px-4" style="height: 5rem;">
                             <h6 style="height: 1rem;">{{$m->title}} </h6>
@@ -97,16 +107,18 @@
                 <button type="button" class="btn btn-secondary rounded-pill mx-2 px-4" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;">A-Z</button>
                 <button type="button" class="btn btn-secondary rounded-pill mx-2 px-4" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;">Z-A</button>
             </div>
+
             @auth
             @if (Auth::user()->is_admin == 'admin')
             <div class=" d-flex justify-content-end" style="padding-right: 2rem">
-                <button type="button" class="btn btn-danger">+ Add Movie</button>
+                <a href="/createmovie"><button type="button" class="btn btn-danger">+ Add Movie</button></a>
             </div>
             @endif
             @endauth
+
             <div class="card-group px-5" style="padding-top: 2rem">
                 @foreach ($titles as $t)
-                    <div class="col">
+                    <div class="col-auto px-3">
                         <div class="card text-white bg-transparent mb-3" style="width: 15rem;">
                             <a href="/moviedetail/{{$m->id}}"><img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                             <div class="card-body px-4" style="height: 5rem;">

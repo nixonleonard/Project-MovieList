@@ -64,7 +64,7 @@
       </div>
 
       <div class="form-group col-md-10">
-        <button type="submit" style="margin-top:20px; margin-left:10px; padding-left:5rem; padding-right:5rem" class="btn btn-primary">Create</button>
+        <button type="submit" style="margin-top:20px; margin-left:10px; padding-left:5rem; padding-right:5rem" class="btn btn-danger">Create</button>
       </div>
 
     </div>
