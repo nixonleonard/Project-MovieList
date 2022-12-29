@@ -3,7 +3,7 @@
 @section('content')
 <div class="box p-5">
     <div style="display: flex">
-        <div class="mt-5 d-flex">
+        <div class="mt-3 d-flex">
             <i class="fas fa-bookmark fa-3x me-4" style="color: red; size"></i>
             <div class="text-light h3">My</div>
             <div class="text-danger h3">Watchlist</div>
@@ -24,10 +24,10 @@
         <form action="" method="post">
             @csrf
             <select class="form-select bg-transparent border-0 text-light" name="status" onchange="this.form.submit()">
-                <option value="all">All</option>
-                <option value="planning" @if($selected && $selected == 'planning') selected @endif>Planned</option>
-                <option value="watching" @if($selected && $selected == 'watching') selected @endif>Watching</option>
-                <option value="finished" @if($selected && $selected == 'finished') selected @endif>Finished</option>
+                <option class="text-dark" value="all">All</option>
+                <option class="text-dark" value="planning" @if($selected && $selected == 'planning') selected @endif>Planned</option>
+                <option class="text-dark" value="watching" @if($selected && $selected == 'watching') selected @endif>Watching</option>
+                <option class="text-dark" value="finished" @if($selected && $selected == 'finished') selected @endif>Finished</option>
             </select>
         </form>
     </div>
@@ -123,11 +123,6 @@
             </div>
     </div>
 </div>
-
-
-
-
-
 
 
 @endsection
