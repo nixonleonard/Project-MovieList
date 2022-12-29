@@ -7,11 +7,11 @@
     }
 </style>
 
-<div class="container" style="padding-top: 3rem;">
+<div class="container" style="padding-top: 3rem; padding-bottom: 8rem;">
     <div class="row gutters d-flex justify-content-center">
     <div class="col-xl-3">
-    <div class="card h-100">
-        <div class="card-body text-center align-items-center d-flex justify-content-center">
+    <div class="card h-100 bg-transparent">
+        <div class="card-body text-center text-light align-items-center d-flex justify-content-center">
             <div class="account-settings">
                 <div class="user-profile">
                     <h5 class="align-items-center">My Profile</h5>
@@ -29,9 +29,8 @@
     </div>
 
     <div class="col-xl-6">
-    <div class="card h-100">
-        <div class="card-body">
-            <div class="col gutters">
+    <div class="card h-100 bg-transparent">
+        <div class="card-body text-light">
                 <h5 class="mb-2">Update Profile</h5>
                 <form action="/login" method="post" class="row align-items-center">
                     @csrf

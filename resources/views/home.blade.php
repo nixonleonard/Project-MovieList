@@ -30,6 +30,13 @@
                     <div class="card bg-transparent" style="width: 35rem; border:none;">
                         <p class="col">After the devastating events of Avengers: Infinity War (2018), the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos's actions and undo the chaos to the universe, no matter what consequences may be in store, and no matter who they face...</p>
                     </div>
+                    @auth
+                    @if (Auth::user()->is_admin == 'member')
+                    <div class=" d-flex justify-content-start" style="padding-right: 2rem">
+                        <a href="#"><button type="button" class="btn btn-danger">+ Add to WatchList</button></a>
+                    </div>
+                    @endif
+                    @endauth
                 </div>
                 <img src="{{ url('storage/images/avangers.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="" />
               </div>
@@ -40,6 +47,13 @@
                     <div class="card bg-transparent" style="width: 35rem; border:none;">
                         <p class="col">When his brother is killed in a robbery, paraplegic Marine Jake Sully decides to take his place in a mission on the distant world of Pandora. There he learns of greedy corporate figurehead Parker Selfridge's intentions of driving off the native humanoid "Na'vi" in order to mine for the precious material scattered throughout their rich woodland.</p>
                     </div>
+                    @auth
+                    @if (Auth::user()->is_admin == 'member')
+                    <div class=" d-flex justify-content-start" style="padding-right: 2rem">
+                        <a href="#"><button type="button" class="btn btn-danger">+ Add to WatchList</button></a>
+                    </div>
+                    @endif
+                    @endauth
                 </div >
                 <img src="{{ url('storage/images/avatar.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="...">
               </div >
@@ -50,6 +64,13 @@
                     <div class="card bg-transparent" style="width: 35rem; border:none;">
                         <p class="col">With his theatrical company a local success, Buster Moon is dreaming of bigger things. Unfortunately, when a talent scout dismisses their work as inadequate for the big time, Buster is driven to prove her wrong. With that goal in mind, Buster inspires his players to gamble everything to sneak into a talent audition in Redshore City for the demanding entertainment mogul Jimmy Crystal.</p>
                     </div>
+                    @auth
+                    @if (Auth::user()->is_admin == 'member')
+                    <div class=" d-flex justify-content-start" style="padding-right: 2rem">
+                        <a href="#"><button type="button" class="btn btn-danger">+ Add to WatchList</button></a>
+                    </div>
+                    @endif
+                    @endauth
                 </div>
                 <img src="{{ url('storage/images/sing.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="...">
               </div>

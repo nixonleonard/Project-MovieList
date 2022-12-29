@@ -11,14 +11,19 @@
                 <button type="submit">Search</button>
             </div>
         </form>
-
     </div>
-    {{-- @foreach ( as ) --}}
+    @auth
+        @if (Auth::user()->is_admin == 'admin')
+            <div class=" d-flex justify-content-end" style="padding-right: 2rem">
+                <a href="/createactor"><button type="button" class="btn btn-danger">+ Add Actor</button></a>
+            </div>
+        @endif
+    @endauth
     <div class="d-flex flex-wrap justify-content-center">
         {{-- <div class="card-group px-5"> --}}
             @foreach ($actor as $a)
             <div class="card bg-dark text-light m-3">
-                    <div class="card text-white bg-transparent mb-5 " style="width: 15rem;">
+                    <div class="card text-white bg-transparent mb-5 " style="width: 15rem; border:none;">
                         <a href="/actordetail/{{$a->name}}"><img src="{{asset($a->image)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                         <div class="card-body px-4" style="height: 5rem;">
                         <h6 style="height: 1rem;">{{$a->name}} </h6>

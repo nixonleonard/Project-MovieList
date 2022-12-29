@@ -23,7 +23,7 @@
     <h5>Add Actor</h5>
 </div>
 
-<form>
+<form style="padding-bottom: 3rem">
     <div class="form-row" style="padding-left: 11rem">
       <div class="form-group col-md-10">
         <label for="name">Name</label>
