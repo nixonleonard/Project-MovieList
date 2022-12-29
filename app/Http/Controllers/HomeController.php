@@ -44,11 +44,10 @@ class HomeController extends Controller
     public function showMovieDetail(Request $request){
         $id = $request->movie_id;
         $movie = Movie::where('id','=',$id)->first();
-        $description = file_get_contents($movie->description);
         $nmovie = Movie::where('id','!=',$id)->get();
         $mgenre = DB::table('movie_genres')->where('movie_id','=',$id)->join('genres', 'movie_genres.genre_id','=','genres.id')->get();
         $character = DB::table('characters')->where('movie_id','=',$id)->join('actors', 'characters.actor_id','=','actors.id')->get();
-        return view('movieDetail')->with(compact('movie', 'nmovie','character','mgenre', 'description'));
+        return view('movieDetail')->with(compact('movie', 'nmovie','character','mgenre'));
     }
 
     public function deleteMovie(Request $request){

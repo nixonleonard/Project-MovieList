@@ -32,7 +32,7 @@
                 <h5 class="card-text">Release Year</h5>
                 <p>{{date('Y', strtotime($movie->release_date))}}</p>
                 <h5>Storyline</h5>
-                <p class="card-text">{{$description}}</p>
+                <p class="card-text">{{$movie->description}}</p>
                 <h5>{{$movie->director}}</h5>
                 <p class="card-text">Director</p>
             </div>

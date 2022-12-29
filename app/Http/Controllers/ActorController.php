@@ -25,8 +25,7 @@ class ActorController extends Controller
         // dd($actor);
         $character = DB::table('characters')->where('actor_id','=',$actor->id)->join('movies', 'characters.movie_id','=','movies.id')->get();
         // $movie = DB::table('movies')->where('movie_id','=',$id)->join('actors', 'characters.actor_id','=','actors.id')->get();
-        $bio = file_get_contents($actor->biography);
-        return view('actorDetail')->with(compact('actor','character','bio'));
+        return view('actorDetail')->with(compact('actor','character'));
     }
 
     public function deleteActor(Request $request){
@@ -77,8 +76,7 @@ class ActorController extends Controller
     public function editActors(Request $request){
         $id = $request->actor_id;
         $actor = Actor::where('id','=',$id)->first();
-        $bio = file_get_contents($actor->biography);
-        return view('editActor')->with(compact('actor', 'bio'));
+        return view('editActor')->with(compact('actor'));
     }
 
     public function editedActors(Request $request){
@@ -103,7 +101,7 @@ class ActorController extends Controller
         dd($request);
         $actor = Actor::where('id', '=', $request->id)->first();
         dd($actor);
-        
+
         $actor->name = $name;
         $actor->gender = $gender;
         $actor->biography = $biography;

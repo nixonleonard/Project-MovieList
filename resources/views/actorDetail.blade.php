@@ -40,7 +40,7 @@
                 @endauth
             </div>
 
-            <p>{{$bio}}</p>
+            <p>{{$actor->biography}}</p>
             <p class="h4">Known for</p>
             <div class="card-group px-5">
                 @foreach ($character as $m)
