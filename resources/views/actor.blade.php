@@ -34,8 +34,7 @@
             @endforeach
       </div>
     </div>
-    {{-- @endforeach --}}
-
 </div>
+
 
 @endsection

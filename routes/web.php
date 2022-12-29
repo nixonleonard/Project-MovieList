@@ -27,11 +27,11 @@ Route::get('/home', [HomeController::class, 'getMovieGenre']);
 Route::get('/genre/{genre_id}', [HomeController::class, 'getMoviesFromGenre']);
 
 Route::get('/moviedetail/{movie_id}', [HomeController::class, 'showMovieDetail']);
-Route::get('/deletemovie/{movie_id}', [HomeController::class, 'deleteMovie']);
+Route::get('/deletemovie/{movie_id}', [HomeController::class, 'deleteMovie'])->middleware('authAdmin');
 
 Route::get('/actor', [ActorController::class, 'getAllActor']);
 Route::get('/actordetail/{actor_id}', [ActorController::class, 'showActorDetail']);
-Route::get('/deleteactor/{actor_id}', [ActorController::class, 'deleteActor']);
+Route::get('/deleteactor/{actor_id}', [ActorController::class, 'deleteActor'])->middleware('authAdmin');
 
 Route::get('/register', [RegisterController::class, 'registerPage']);
 Route::post('/register', [RegisterController::class, 'register']);
@@ -39,13 +39,13 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [AuthController::class, 'loginPage']);
 Route::post('/login',[AuthController::class, 'login']);
 Route::get('/logout',[AuthController::class, 'logout']);
-Route::get('/admin', [AuthController::class, 'adminPage'])->middleware('security');
+// Route::get('/admin', [AuthController::class, 'adminPage'])->middleware('authAdmin');
 
-Route::get('/createmovie', [RegisterController::class, 'showGenre']);
+Route::get('/createmovie', [RegisterController::class, 'showGenre'])->middleware('authAdmin');
 // Route::post('/register', [RegisterController::class, 'register']);
 
-Route::get('/createactor', [ActorController::class, 'insertActorPage']);
-Route::post('/createactor', [ActorController::class, 'insertActor']);
+Route::get('/createactor', [ActorController::class, 'insertActorPage'])->middleware('authAdmin');
+Route::post('/createactor', [ActorController::class, 'insertActor'])->middleware('authAdmin');
 
 Route::get('/editmovie', function () {
     return view('editMovie');
@@ -55,8 +55,8 @@ Route::get('/editactor', function () {
     return view('editActor');
 });
 
-Route::get('/mywatchlist',[WatchListController::class, 'search']);
-Route::post('/mywatchlist',[WatchListController::class, 'search']);
+Route::get('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
+Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
 
 
 Route::get('/myprofile', function(){

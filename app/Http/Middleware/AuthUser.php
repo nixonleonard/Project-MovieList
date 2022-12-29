@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Security
+class AuthUser
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Security
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::check() || Auth::user()->is_admin !='admin'){
+        if(!Auth::check() || Auth::user()->is_admin !='member'){
             return abort(401);
         }
         return $next($request);
