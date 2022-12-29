@@ -39,18 +39,21 @@
         <label for="inputAddress">Genre</label>
         <select class="form-control custom-select-lg mb-3" style="margin-top:10px; margin-left:10px;" >
             <option selected>Select an option</option>
-            {{-- @foreach ( as )
+            @foreach ($genre as $g)
+                <option value="{{$g->name}}">{{$g->name}}</option>
+            @endforeach
 
-            @endforeach --}}
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
           </select>
       </div>
 
       <div class="form-group col-md-10">
         <label for="actor">Actor</label>
         <input type="text" class="form-control" id="actor">
+      </div>
+
+      <div class="form-group col-md-10">
+        <label for="character">Character Name</label>
+        <input type="text" class="form-control" id="character">
       </div>
 
       <div class="form-group col-md-10">

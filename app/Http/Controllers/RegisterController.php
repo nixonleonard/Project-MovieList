@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,5 +40,10 @@ class RegisterController extends Controller
 
         DB::table('users')->insert($insert);
         return redirect('/login');
+    }
+
+    public function showGenre(){
+        $genre = Genre::all();
+        return view('createMovie')->with(compact('genre'));
     }
 }

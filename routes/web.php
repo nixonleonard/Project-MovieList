@@ -26,9 +26,11 @@ Route::get('/home', [HomeController::class, 'getMovieGenre']);
 Route::get('/genre/{genre_id}', [HomeController::class, 'getMoviesFromGenre']);
 
 Route::get('/moviedetail/{movie_id}', [HomeController::class, 'showMovieDetail']);
+Route::get('/deletemovie/{movie_id}', [HomeController::class, 'deleteMovie']);
 
 Route::get('/actor', [ActorController::class, 'getAllActor']);
 Route::get('/actordetail/{actor_id}', [ActorController::class, 'showActorDetail']);
+Route::get('/deleteactor/{actor_id}', [ActorController::class, 'deleteActor']);
 
 Route::get('/register', [RegisterController::class, 'registerPage']);
 Route::post('/register', [RegisterController::class, 'register']);
@@ -38,9 +40,9 @@ Route::post('/login',[AuthController::class, 'login']);
 Route::get('/logout',[AuthController::class, 'logout']);
 Route::get('/admin', [AuthController::class, 'adminPage'])->middleware('security');
 
-Route::get('/createmovie', function () {
-    return view('createMovie');
-});
+Route::get('/createmovie', [RegisterController::class, 'showGenre']);
+// Route::post('/register', [RegisterController::class, 'register']);
+
 
 Route::get('/editmovie', function () {
     return view('editMovie');

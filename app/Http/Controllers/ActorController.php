@@ -26,10 +26,9 @@ class ActorController extends Controller
         return view('actorDetail')->with(compact('actor','character','bio'));
     }
 
-
-    // $id = $request->route('book_id');
-    // $book = DB::table('books')->where('id','=',$id)->first();
-    // $publisher = DB::table('publishers')->where('id','=',$book->publisher_id)->first();
-    // $synopsis = file_get_contents($book->synopsis);
-    // return view('book_detail')->with(compact('book','publisher','synopsis'));
+    public function deleteActor(Request $request){
+        $id = $request->actor_id;
+        Actor::where('id', '=', $id)->delete();
+        return redirect('/home');
+    }
 }

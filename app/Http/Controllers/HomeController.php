@@ -51,5 +51,10 @@ class HomeController extends Controller
         return view('movieDetail')->with(compact('movie', 'nmovie','character','mgenre', 'description'));
     }
 
+    public function deleteMovie(Request $request){
+        $id = $request->movie_id;
+        Movie::where('id', '=', $id)->delete();
+        return redirect('/home');
+    }
 
 }

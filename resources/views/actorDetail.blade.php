@@ -34,7 +34,7 @@
                 @if (Auth::user()->is_admin == 'admin')
                 <div class="col d-flex justify-content-end" style="padding-right: 2rem;">
                     <a href="/editactor"><i class="bi bi-pencil-square" style="color: white; padding-right: 7px"></i></a>
-                    <a href="#"><i class="bi bi-trash3" style="color: white"></i></i></a>
+                    <a href="/deleteactor/{{$actor->id}}"><i class="bi bi-trash3" style="color: white"></i></i></a>
                 </div>
                 @endif
                 @endauth
