@@ -151,6 +151,17 @@
                 @endforeach
             </div>
 
+            {{-- @if (Auth::user()->is_admin == 'member')
+                <button class="border-0 btn py-3 bg-danger text-white watchlist fa-solid
+                @php
+                    $check=false
+                @endphp
+                @foreach ($ as )
+
+                @endforeach">
+
+                </button>
+            @endif --}}
 
 
         </div>

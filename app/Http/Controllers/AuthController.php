@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
@@ -36,5 +38,10 @@ class AuthController extends Controller
     public function logout(){
         Auth::logout();
         return redirect('/login');
+    }
+
+    public function myProfilePage(){
+        $user = Auth::user();
+        return view('profilePage')->with(compact('user'));
     }
 }

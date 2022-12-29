@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('DOB')->nullable();
             $table->string('phone')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image')->default('storage/images/userdefault.jpg');
             $table->string('is_admin')->default('member');
             $table->rememberToken();
             $table->timestamps();

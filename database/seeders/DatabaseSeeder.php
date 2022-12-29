@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('user123'),
             'DOB' => '2002/09/16',
             'phone' => '098767898789',
-            'image' => '',
         ]);
 
         // create admin user
@@ -33,7 +32,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin123'),
             'DOB' => '2002/09/16',
             'phone' => '098767875489',
-            'image' => '',
             'is_admin' => 'admin'
         ]);
 

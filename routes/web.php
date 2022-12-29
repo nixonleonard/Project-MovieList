@@ -59,9 +59,7 @@ Route::get('/mywatchlist',[WatchListController::class, 'search'])->middleware('a
 Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
 
 
-Route::get('/myprofile', function(){
-    return view('profilePage');
-});
+Route::get('/myprofile',[AuthController::class, 'myProfilePage']);
 
 Route::get('/actordetail', function(){
     return view('actorDetail');
