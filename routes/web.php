@@ -4,6 +4,7 @@ use App\Http\Controllers\ActorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\WatchListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,9 +57,12 @@ Route::get('/editactor', function () {
     return view('editActor');
 });
 
-Route::get('/mywatchlist', function () {
-    return view('myWatchList');
-});
+Route::get('/mywatchlist',[WatchListController::class, 'search']);
+Route::post('/mywatchlist',[WatchListController::class, 'search']);
+
+// Route::get('/mywatchlist', function () {
+//     return view('myWatchList');
+// });
 
 // Route::get('/actor', function () {
 //     return view('actor');

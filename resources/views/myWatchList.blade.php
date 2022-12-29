@@ -4,7 +4,7 @@
 <div class="box p-5">
     <div style="display: flex">
         <div class="mt-5 d-flex">
-            <i class="fas fa-bookmark fa-3x" style="color: red; size"></i>
+            <i class="fas fa-bookmark fa-3x me-4" style="color: red; size"></i>
             <div class="text-light h3">My</div>
             <div class="text-danger h3">Watchlist</div>
         </div>
@@ -18,41 +18,109 @@
                 </button>
             </span>
         </div>
-    {{-- filter --}}
+        {{-- filter --}}
+    <div class="d-flex align-item-center my-4">
+        <i class="fas fa-filter fa-1x me-4 text-light my-2"></i>
+        <form action="" method="post">
+            @csrf
+            <select class="form-select bg-transparent border-0 text-light" name="status" onchange="this.form.submit()">
+                <option value="all">All</option>
+                <option value="planning" @if($selected && $selected == 'planning') selected @endif>Planned</option>
+                <option value="watching" @if($selected && $selected == 'watching') selected @endif>Watching</option>
+                <option value="finished" @if($selected && $selected == 'finished') selected @endif>Finished</option>
+            </select>
+        </form>
+    </div>
 
+    {{-- table title --}}
     <div class="mt-5">
-        <table class="table text-light">
-            <thead >
-              <tr>
-                <th scope="col">Poster</th>
-                <th scope="col">Title</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            {{-- <tbody>
-                @foreach ( as )
-                <td>
-                    <img width="200px" height="200px" src="{{Storage::url('images/')}}" alt="">
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                @endforeach
-            </tbody> --}}
+        <div class="row text-light  my-3">
+            <div class="col-3">
+                Poster
+            </div>
+            <div class="col-4">
+                Title
+            </div>
+            <div class="col-3">
+                Status
+            </div>
+            <div class="col-2">
+                Action
+            </div>
+        </div>
 
-          </table>
-            {{-- <div>
-                <a href="{{$students->previousPageUrl()}}">&laquo;</a>
-                @for ($i=1 ; $i <=$students->lastPage(); $i++)
-                    @if ($i == $students->currentPage())
-                        <b><a href="{{$students->url($i)}}">{{$i}}</a></b>
-                    @else
-                        <a href="{{$students->url($i)}}">{{$i}}</a>
-                    @endif
-                @endfor
-                <a href="{{$students->nextPageUrl()}}">&raquo;</a>
-            </div> --}}
+        {{-- table content --}}
+        <div class="row text-light bg-dark my-3" style="height: 100px">
+            <div class="col-3">
+                Poster
+            </div>
+            <div class="col-4">
+                Title
+            </div>
+            <div class="col-3">
+                Status
+            </div>
+            <div class="col-2">
+                Action
+            </div>
+        </div>
+        <div class="row text-light bg-dark my-3" style="height: 100px">
+            <div class="col-3">
+                Poster
+            </div>
+            <div class="col-4">
+                Title
+            </div>
+            <div class="col-3">
+                Status
+            </div>
+            <div class="col-2">
+                Action
+            </div>
+        </div>
+        <div class="row text-light bg-dark my-3" style="height: 100px">
+            <div class="col-3">
+                Poster
+            </div>
+            <div class="col-4">
+                Title
+            </div>
+            <div class="col-3">
+                Status
+            </div>
+            <div class="col-2">
+                Action
+            </div>
+        </div>
+        <div class="row text-light bg-dark my-3" style="height: 100px">
+            <div class="col-3">
+                Poster
+            </div>
+            <div class="col-4">
+                Title
+            </div>
+            <div class="col-3">
+                Status
+            </div>
+            <div class="col-2">
+                Action
+            </div>
+        </div>
+
+            {{-- pagination --}}
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="text-secondary">Showing
+                    <span class="fw-bold">{{$movies->firstItem()}}</span>
+                    to
+                    <span class="fw-bold">{{$movies->lastItem()}}</span>
+                    of
+                    <span class="fw-bold">{{$movies->total()}}</span>
+                    results
+                </p>
+                <div class="d-flex">
+                    {!!$movies->links()!!}
+                </div>
+            </div>
     </div>
 </div>
 
