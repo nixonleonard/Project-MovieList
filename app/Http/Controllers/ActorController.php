@@ -60,7 +60,7 @@ class ActorController extends Controller
             'popularity' => 'required|numeric',
         ]);
 
-        Storage::putFileAs('/public/storage/images', $image, $image->getClientOriginalName());
+        Storage::putFileAs('/public/images', $image, $image->getClientOriginalName());
         Actor::create([
             'name' => $name,
             'gender' => $gender,

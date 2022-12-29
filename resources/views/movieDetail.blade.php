@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class ="bg-image" style="background-image:linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url('/storage/images/endgame/endgame_tn.jpg'); height: 500px; background-repeat: no-repeat; background-size: cover">
+<div class ="bg-image" style="background-image:linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url('{{asset($movie->background)}}'); height: 500px; background-repeat: no-repeat; background-size: cover">
       <div class="card bg-transparent mb-3" style="max-width: auto; border:none;">
         <div class="row g-0" style="padding-top: 3rem;">
           <div class="col-md-4 d-flex justify-content-center">

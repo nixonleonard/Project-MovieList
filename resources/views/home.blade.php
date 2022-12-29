@@ -141,7 +141,7 @@
                 @foreach ($titles as $t)
                     <div class="col-auto px-3">
                         <div class="card text-white bg-transparent mb-3" style="width: 15rem;">
-                            <a href="/moviedetail/{{$m->id}}"><img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
+                            <a href="/moviedetail/{{$t->id}}"><img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                             <div class="card-body px-4" style="height: 5rem;">
                             <h6 style="height: 1rem;">{{$t->title}} </h6>
                             <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
