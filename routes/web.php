@@ -48,7 +48,7 @@ Route::get('/createactor', [ActorController::class, 'insertActorPage'])->middlew
 Route::post('/createactor', [ActorController::class, 'insertActor'])->middleware('authAdmin');
 // Route::get('/editactor', [ActorController::class, 'insertActorPage'])->middleware('authAdmin');
 Route::get('/editactor/{actor_id}', [ActorController::class, 'editActors'])->middleware('authAdmin');
-Route::post('/editactor/{actor_name}', [ActorController::class, 'editedActors'])->middleware('authAdmin');
+Route::post('/editactors/{actor_id}', [ActorController::class, 'editedActors'])->middleware('authAdmin');
 
 Route::get('/editmovie', function () {
     return view('editMovie');

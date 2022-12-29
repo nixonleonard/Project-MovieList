@@ -23,7 +23,7 @@
     <h5>Edit Actor</h5>
 </div>
 
-<form action="/editactor/{{$actor->name}}" method="post" enctype="multipart/form-data" style="padding-bottom: 2rem">
+<form action="/editactors/{{$actor->id}}" method="post" enctype="multipart/form-data" style="padding-bottom: 2rem">
     @csrf
     <div class="form-row" style="padding-left: 11rem">
       <div class="form-group col-md-10">
@@ -41,7 +41,7 @@
       </div>
       <div class="form-group col-md-10">
         <label for="biography">Biography</label>
-        <textarea type="text" style="margin-top:10px; margin-left:10px;" class="form-control" id="biography" rows="5" name="biography">{{$bio}}</textarea>
+        <textarea type="text" style="margin-top:10px; margin-left:10px;" class="form-control" id="biography" rows="5" name="biography">{{$actor->biography}}</textarea>
       </div>
 
       <div class="form-group col-md-10 col-form-label">
