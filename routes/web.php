@@ -65,7 +65,7 @@ Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('
 
 Route::get('/myprofile',[AuthController::class, 'myProfilePage'])->middleware('authLogin');
 Route::post('/updateprofile', [AuthController::class, 'updateProfile'])->middleware('authLogin');
-
+Route::post('/changeprofile', [AuthController::class, 'updateProfilePict'])->middleware('authLogin');
 // Route::get('/actordetail', function(){
 //     return view('actorDetail');
 // });

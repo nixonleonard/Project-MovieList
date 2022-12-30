@@ -47,31 +47,40 @@ class AuthController extends Controller
 
     public function updateProfile(Request $request){
 
-        // $this->validate($request, [
-        //     'username' => 'required',
-        //     'email' => 'required|email',
-        //     'dob' => 'required|date',
-        //     'phone' => 'required|min:5|max:13|numeric',
-        // ]);
+        $username = $request->username;
+        $email = $request->email;
+        $dob = $request->dob;
+        $phone = $request->phone;
 
-        // dd($request);
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required|email',
+            'dob' => 'required',
+            'phone' => 'required|min:5|max:13',
+        ]);
 
-        // $username = $request->username;
-        // $email = $request->email;
-        // $dob = $request->dob;
-        // $phone = $request->phone;
+        $user = Auth::user();
 
-        // $user = Auth::user();
+        $user->username = $username;
+        $user->email = $email;
+        $user->DOB = $dob;
+        $user->phone = $phone;
 
-        // $user->username = $username;
-        // $user->email = $email;
-        // $user->DOB = $dob;
-        // $user->phone = $phone;
+        $user->save();
 
-        // // dd($request);
-        // // $user->update($request->all());
+        return redirect('/myprofile');
+    }
 
-        // // $user->save();
+    public function updateProfilePict(Request $request){
+
+        $request->validate([
+            'image' => 'required',
+        ]);
+
+        $user = Auth::user();
+        $user->image = $request->image;
+        $user->save();
+
         return redirect('/myprofile');
     }
 }

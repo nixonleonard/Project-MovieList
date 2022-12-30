@@ -33,18 +33,18 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(100%) sepia(1%) saturate(2%) hue-rotate(268deg) brightness(115%) contrast(101%);"></button>
                             </div>
                             <div class="modal-body">
-                              <form action="">
+                              <form action="/changeprofile" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group col-md-10">
                                     <input type="text" class="form-control" name="image" id="image" value="{{$user->image}}">
                                   </div>
                                   <p class="text-muted" style="padding-top:1rem; ">Please upload your image to other sources first and Use the URL</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-danger">Save changes</button>
+                                  </div>
                               </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -98,6 +98,15 @@
                         </div>
 
                     </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </form>
         </div>
     </div>
