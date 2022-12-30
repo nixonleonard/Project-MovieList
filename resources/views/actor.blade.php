@@ -21,13 +21,13 @@
     @endauth
     <div class="d-flex flex-wrap justify-content-center">
         {{-- <div class="card-group px-5"> --}}
-            @foreach ($actor as $a)
+            @foreach ($names as $n)
             <div class="card bg-dark text-light m-3">
                     <div class="card text-white bg-transparent mb-5 " style="width: 15rem; border:none;">
-                        <a href="/actordetail/{{$a->name}}"><img src="{{asset($a->image)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
+                        <a href="/actordetail/{{$n->name}}"><img src="{{asset($n->image)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                         <div class="card-body px-4" style="height: 5rem;">
-                        <h6 style="height: 1rem;">{{$a->name}} </h6>
-                        <p class="text-muted" style="height: 2rem;">{{$a->title}} </p>
+                        <h6 style="height: 1rem;">{{$n->name}} </h6>
+                        <p class="text-muted" style="height: 2rem;">{{$n->title}} </p>
                         </div>
                     </div>
                 </div>

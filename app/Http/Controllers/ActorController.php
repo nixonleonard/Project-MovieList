@@ -12,11 +12,15 @@ use Illuminate\Support\Facades\Storage;
 class ActorController extends Controller
 {
     public function getAllActor(Request $request){
-        $actor = DB::table('actors')->leftJoin('characters','characters.actor_id','=','actors.id')->leftJoin('movies','movies.id','=','characters.movie_id')->get();
         $search = $request->query('search');
-        $titles = Actor::where('name', 'LIKE', "%$search%")->paginate(100)->appends(['search' => $search]);
-        return view('actor')->with(compact('actor', 'titles'));
+        $names = Actor::where('name', 'LIKE', "%$search%")->leftJoin('characters','characters.actor_id','=','actors.id')->leftJoin('movies','movies.id','=','characters.movie_id')->paginate(100)->appends(['search' => $search]);;
+        return view('actor')->with(compact('names'));
     }
+    // $movie = WatchList::with('movie')
+    //         ->where('user_id', Auth::user()->id)
+    //         ->where('title', 'LIKE', "%$request->search%")
+    //         ->join('movies', 'movie_id', '=', 'movies.id')
+    //         ->paginate(4);
 
     public function showActorDetail(Request $request){
         $id = $request->actor_id;
