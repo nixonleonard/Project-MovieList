@@ -23,7 +23,7 @@
     <h5>Edit Actor</h5>
 </div>
 
-<form action="/editactors/{{$actor->id}}" method="post" enctype="multipart/form-data" style="padding-bottom: 2rem">
+<form action="/editactor/{{$actor->id}}" method="post" enctype="multipart/form-data" style="padding-bottom: 2rem">
     @csrf
     <div class="form-row" style="padding-left: 11rem">
       <div class="form-group col-md-10">
@@ -69,6 +69,15 @@
       </div>
 
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
   </form>
 
 @endsection

@@ -12,10 +12,9 @@ use Illuminate\Support\Facades\Storage;
 class ActorController extends Controller
 {
     public function getAllActor(Request $request){
-        // $id = $request->actor_id;
+        $actor = DB::table('actors')->leftJoin('characters','characters.actor_id','=','actors.id')->leftJoin('movies','movies.id','=','characters.movie_id')->get();
         $search = $request->query('search');
-        $titles = Actor::where('name', 'LIKE', "%$search%")->paginate(5)->appends(['search' => $search]);
-        $actor = DB::table('actors')->join('characters','characters.actor_id','=','actors.id')->join('movies','movies.id','=','characters.movie_id')->get();
+        $titles = Actor::where('name', 'LIKE', "%$search%")->paginate(100)->appends(['search' => $search]);
         return view('actor')->with(compact('actor', 'titles'));
     }
 
@@ -40,7 +39,6 @@ class ActorController extends Controller
 
     public function insertActor(Request $request){
 
-        dd($request);
         $name = $request->name;
         $gender = $request->gender;
         $biography = $request->biography;
@@ -59,7 +57,12 @@ class ActorController extends Controller
             'popularity' => 'required|numeric',
         ]);
 
-        Storage::putFileAs('/public/images', $image, $image->getClientOriginalName());
+        $file = $request->file('image');
+        $fileName = $file->getClientOriginalName();
+        $path = public_path().'/storage/images' ;
+        $file->move($path,$fileName);
+
+        // Storage::putFileAs('/public/images', $image, $image->getClientOriginalName());
         Actor::create([
             'name' => $name,
             'gender' => $gender,
@@ -73,7 +76,7 @@ class ActorController extends Controller
         return redirect('/actor');
     }
 
-    public function editActors(Request $request){
+    public function showEditActors(Request $request){
         $id = $request->actor_id;
         $actor = Actor::where('id','=',$id)->first();
         return view('editActor')->with(compact('actor'));
@@ -85,7 +88,7 @@ class ActorController extends Controller
         $biography = $request->biography;
         $dob = $request->dob;
         $pob = $request->pob;
-        $image = $request->image;
+        $image = $request->file('image');
         $popularity = $request->popularity;
 
         $this->validate($request, [
@@ -98,21 +101,24 @@ class ActorController extends Controller
             'popularity' => 'required|numeric',
         ]);
 
-        dd($request);
-        $actor = Actor::where('id', '=', $request->id)->first();
-        dd($actor);
+        // dd($request->actor_id);
+        $actor = Actor::where('id', '=', $request->actor_id)->first();
+        // dd($actor);
 
         $actor->name = $name;
         $actor->gender = $gender;
         $actor->biography = $biography;
         $actor->DOB = $dob;
         $actor->POB = $pob;
-        $actor->image = $image;
         $actor->popularity = $popularity;
 
         if($image!=null){
-            Storage::putFileAs('/public/image', $image, $image->getClientOriginalName());
-            $actor->image = '/storage/image/'.$image->getClientOriginalName();
+            $file = $request->file('image');
+            $fileName = $file->getClientOriginalName();
+            $path = public_path().'/storage/images' ;
+            $file->move($path,$fileName);
+
+            $actor->image = 'storage/images/'.$image->getClientOriginalName();
         }
 
         $actor->save();

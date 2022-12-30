@@ -10,7 +10,7 @@
     <div class="row text-light">
         <div class="col-3">
 
-            <img src="{{asset($actor->image)}}" alt="" style="height: 400px;">
+            <img src="{{asset($actor->image)}}" alt="" style="height: 400px; width:300px;">
 
             <h4 style="padding-top: 10px">Personal Info</h4>
             <h6 class="font-weight-bold">Popularity</h6>
