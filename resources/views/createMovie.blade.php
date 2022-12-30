@@ -38,7 +38,7 @@
       </div>
       <div class="form-group col-md-10">
         <label for="inputAddress">Genre</label>
-        <select class="form-control custom-select-lg mb-3" name="genre" style="margin-top:10px; margin-left:10px;" >
+        <select class="form-control custom-select-lg mb-3" name="genre[]" style="margin-top:10px; margin-left:10px;" >
             <option selected>-- Open this select menu --</option>
             @foreach ($genre as $g)
                 <option value="{{$g->name}}">{{$g->name}}</option>
@@ -49,13 +49,52 @@
 
       <div class="form-group col-md-10">
         <label for="actor">Actor</label>
-        <input type="text" class="form-control" name="actor" id="actor">
+        <div class="row">
+            <div class="form-gorup col-xl-12 col-md-12 col-sm-12 child-repeater-table">
+                <table class="table table-bordered table-responsive" >
+                    <tbody>
+                        <div class="row" style="padding: 10px 10px 0">
+                            <div class="col">
+                                <label for="actor">Actor</label>
+                                <select name="actor[]" id="" class="form-control" style="margin: 10px 10px 0 0">
+                                    <option value="">-- Open this selected menu --</option>
+                                    @foreach ($actor as $a)
+                                    <option value="{{$a->name}}">{{$a->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="character">Character Name</label>
+                              <input type="text" class="form-control" name="character[]">
+                            </div>
+                        </div>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-end pt-2">
+                    <a href="JavasScript:void(0)" onclick="dynamicForm()" class="btn btn-primary addRow">Add More</a>
+                </div>
+            </div>
+        </div>
       </div>
 
-      <div class="form-group col-md-10">
-        <label for="character">Character Name</label>
-        <input type="text" class="form-control" name="character" id="character">
-      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script>
+        function dynamicForm(){
+            var tr =  "<div class= 'row' style='padding: 10px 10px'>"+
+                                "<div class='col'>"+
+                                    "<label for='actor'>Actor</label>"+
+                                    "<select name='actor[]' id='' class='form-control' style='margin: 10px 10px 0 0'>"+
+                                        "<option value=''>-- Open this selected menu --</option>"+
+                                    "</select>"+
+                                "</div>"+
+                                "<div class='col'>"+
+                                    "<label for='character'>Character Name</label>"+
+                                    "<input type='text' class='form-control' name='character[]'>"+
+                               "</div>"+
+                            "</div>";
+            $('tbody').append(tr);
+        }
+      </script>
 
       <div class="form-group col-md-10">
         <label for="director">Director</label>
