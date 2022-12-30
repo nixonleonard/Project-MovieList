@@ -85,6 +85,9 @@
                                     "<label for='actor'>Actor</label>"+
                                     "<select name='actor[]' id='' class='form-control' style='margin: 10px 10px 0 0'>"+
                                         "<option value=''>-- Open this selected menu --</option>"+
+                                        "@foreach ($actor as $a)"+
+                                            "<option value='{{$a->name}}''>{{$a->name}}</option>"+
+                                        "@endforeach"+
                                     "</select>"+
                                 "</div>"+
                                 "<div class='col'>"+

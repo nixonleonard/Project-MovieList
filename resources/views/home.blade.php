@@ -33,7 +33,10 @@
                     @auth
                     @if (Auth::user()->is_admin == 'member')
                     <div class=" d-flex justify-content-start" style="padding-right: 2rem">
-                        <a href="#"><button type="button" class="btn btn-danger">+ Add to WatchList</button></a>
+                        <form action="/addtowatchlist/1" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">+ Add to WatchList</button>
+                        </form>
                     </div>
                     @endif
                     @endauth
@@ -50,7 +53,10 @@
                     @auth
                     @if (Auth::user()->is_admin == 'member')
                     <div class=" d-flex justify-content-start" style="padding-right: 2rem">
-                        <a href="#"><button type="button" class="btn btn-danger">+ Add to WatchList</button></a>
+                        <form action="/addtowatchlist/2" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">+ Add to WatchList</button>
+                        </form>
                     </div>
                     @endif
                     @endauth
@@ -67,7 +73,10 @@
                     @auth
                     @if (Auth::user()->is_admin == 'member')
                     <div class=" d-flex justify-content-start" style="padding-right: 2rem">
-                        <a href="#"><button type="button" class="btn btn-danger">+ Add to WatchList</button></a>
+                        <form action="/addtowatchlist/3" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">+ Add to WatchList</button>
+                        </form>
                     </div>
                     @endif
                     @endauth
@@ -149,11 +158,24 @@
                         <div class="card text-white bg-transparent mb-3" style="width: 15rem;">
                             <a href="/moviedetail/{{$t->id}}"><img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                             <div class="card-body px-4" style="height: 5rem;">
+                            {{-- <h6 style="height: 1rem;">{{$t->title}} </h6>
+                            <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p> --}}
+                            @if (Auth::user()->is_admin == 'member')
                             <h6 style="height: 1rem;">{{$t->title}} </h6>
-                            <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
+                                <form action="/addtowatchlist/{{$t->id}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn text-muted">
+                                          +
+                                    </button>
+                                </form>
+                            </div>
+                            @endif
                             </div>
                         </div>
                     </div>
+
                 @endforeach
             </div>
 

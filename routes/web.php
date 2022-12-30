@@ -60,7 +60,8 @@ Route::get('/editmovie', function () {
 // });
 
 Route::get('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
-Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
+// Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
+Route::post('/addtowatchlist/{movie_id}',[WatchListController::class, 'addToWatchList'])->middleware('authUser');
 
 
 Route::get('/myprofile',[AuthController::class, 'myProfilePage'])->middleware('authLogin');

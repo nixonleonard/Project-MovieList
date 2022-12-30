@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use Illuminate\Support\Facades\Auth;
 use App\Models\WatchList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WatchListController extends Controller
 {
@@ -25,11 +27,22 @@ class WatchListController extends Controller
         }else{
             $movies = WatchList::where('user_id', Auth::user()->id)->paginate(4);
         }
-
+        $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
         $selected = $request->status;
         $movies->appends([
             'title'=>$request->search,
         ]);
-        return view('myWatchList', ['movies'=>$movies, 'selected'=>$selected]);
+        return view('myWatchList')->with(compact('movies', 'selected', 'movie'));
     }
+
+    public function addToWatchList(Request $request){
+        WatchList::create([
+            'user_id' => Auth::user()->id,
+            'movie_id' => $request->movie_id,
+            'status' => 'Planning'
+        ]);
+        $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
+        return view('myWatchList')->with(compact('movie'));
+    }
+
 }

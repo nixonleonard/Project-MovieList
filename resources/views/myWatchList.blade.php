@@ -25,14 +25,15 @@
             @csrf
             <select class="form-select bg-transparent border-0 text-light" name="status" onchange="this.form.submit()">
                 <option class="text-dark" value="all">All</option>
-                <option class="text-dark" value="planning" @if($selected && $selected == 'planning') selected @endif>Planned</option>
+                {{-- <option class="text-dark" value="planning" @if($selected && $selected == 'planning') selected @endif>Planned</option>
                 <option class="text-dark" value="watching" @if($selected && $selected == 'watching') selected @endif>Watching</option>
-                <option class="text-dark" value="finished" @if($selected && $selected == 'finished') selected @endif>Finished</option>
+                <option class="text-dark" value="finished" @if($selected && $selected == 'finished') selected @endif>Finished</option> --}}
             </select>
         </form>
     </div>
 
-    {{-- table title --}}
+
+
     <div class="mt-5">
         <div class="row text-light  my-3">
             <div class="col-3">
@@ -50,65 +51,58 @@
         </div>
 
         {{-- table content --}}
-        <div class="row text-light bg-dark my-3" style="height: 100px">
-            <div class="col-3">
-                Poster
+        @if ($movie != null)
+            @foreach ($movie as $m)
+            <div class="row text-light bg-dark my-3 d-flex align-items-center" style="height: 100px">
+                <div class="col-3">
+                    <img src="{{asset($m->thumbnail)}}" style="height: 100px">
+                </div>
+                <div class="col-4">
+                    {{$m->title}}
+                </div>
+                <div class="col-3">
+                    {{$m->status}}
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#popup">...</button>
+                    <div class="modal fade" id="popup" tabindex="-3" aria-labelledby="popup" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content bg-dark">
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="popup">Change Status</h4>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(100%) sepia(1%) saturate(2%) hue-rotate(268deg) brightness(115%) contrast(101%);"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="/changeprofile" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group col-md-10">
+                                    <select class="bg-dark text-light form-select mx-3" name="status" id="status">
+                                        <option value="planned">Planned</option>
+                                        <option value="watching">Watching</option>
+                                        <option value="finished">Finished</option>
+                                        <option value="remove">Remove</option>
+                                    </select>
+                                  </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-danger">Save changes</button>
+                                  </div>
+                              </form>
+                          </div>
+                        </div>
+                      </div>
+                </div>
             </div>
-            <div class="col-4">
-                Title
-            </div>
-            <div class="col-3">
-                Status
-            </div>
-            <div class="col-2">
-                Action
-            </div>
-        </div>
-        <div class="row text-light bg-dark my-3" style="height: 100px">
-            <div class="col-3">
-                Poster
-            </div>
-            <div class="col-4">
-                Title
-            </div>
-            <div class="col-3">
-                Status
-            </div>
-            <div class="col-2">
-                Action
-            </div>
-        </div>
-        <div class="row text-light bg-dark my-3" style="height: 100px">
-            <div class="col-3">
-                Poster
-            </div>
-            <div class="col-4">
-                Title
-            </div>
-            <div class="col-3">
-                Status
-            </div>
-            <div class="col-2">
-                Action
-            </div>
-        </div>
-        <div class="row text-light bg-dark my-3" style="height: 100px">
-            <div class="col-3">
-                Poster
-            </div>
-            <div class="col-4">
-                Title
-            </div>
-            <div class="col-3">
-                Status
-            </div>
-            <div class="col-2">
-                Action
-            </div>
-        </div>
+        @endforeach
+
+        @endif
+
+
 
             {{-- pagination --}}
-            <div class="d-flex justify-content-between align-items-center">
+            {{-- <div class="d-flex justify-content-between align-items-center">
                 <p class="text-secondary">Showing
                     <span class="fw-bold">{{$movies->firstItem()}}</span>
                     to
@@ -120,7 +114,7 @@
                 <div class="d-flex">
                     {!!$movies->links()!!}
                 </div>
-            </div>
+            </div> --}}
     </div>
 </div>
 

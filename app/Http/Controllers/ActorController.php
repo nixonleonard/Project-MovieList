@@ -34,7 +34,7 @@ class ActorController extends Controller
     public function deleteActor(Request $request){
         $id = $request->actor_id;
         Actor::where('id', '=', $id)->delete();
-        return redirect('/home');
+        return redirect('/actor');
     }
 
     public function insertForActorPage(){
