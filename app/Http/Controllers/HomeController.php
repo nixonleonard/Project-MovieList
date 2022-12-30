@@ -14,11 +14,14 @@ class HomeController extends Controller
 {
     public function getMovieGenre(Request $request)
     {
+        // echo "hi";
         $movie = Movie::all();
         $genre = Genre::all();
         $search = $request->query('search');
         $titles = Movie::where('title', 'LIKE', "%$search%")->paginate(5)->appends(['search' => $search]);
-        return view('home')->with(compact('movie','genre', 'titles'));
+        $randMovie = DB::table('movie_genres')->join('movies','movies.id','=','movie_genres.movie_id')->join('genres','movie_genres.genre_id','=','genres.id')->inRandomOrder()->limit(3)->get();
+        // dd($randMovie);
+        return view('home')->with(compact('movie','genre','titles','randMovie'));
     }
 
     public function getMoviesFromGenre(Request $request)
@@ -27,6 +30,7 @@ class HomeController extends Controller
         $genre = Genre::all();
         $genre_id = $request->genre_id;
         $titles = DB::table('movie_genres')->join('movies','movies.id','=','movie_genres.movie_id')->where('movie_genres.genre_id','=',$genre_id)->get();
+        $randMovie = DB::table('movie_genres')->join('movies','movies.id','=','movie_genres.movie_id')->join('genres','movie_genres.genre_id','=','genres.id')->inRandomOrder()->limit(3)->get();
 
         $sortid = $request->id;
 
@@ -39,7 +43,7 @@ class HomeController extends Controller
         }
         // dd($tit);
 
-        return view('home')->with(compact('movie','genre', 'titles'));
+        return view('home')->with(compact('movie','genre', 'titles' ,'randMovie'));
     }
 
     public function showMovieDetail(Request $request){
@@ -68,6 +72,13 @@ class HomeController extends Controller
         // $title = $request->title;
         // $description = $request->description;
         // $genre = $request->genre;
+
+        // for($i = 0; i<count($genre); $i++){
+        //     $save = [
+        //         'genre_id' => $genre[$i],
+
+        //     ]
+        // }
         // $actor = $request->actor;
         // $character = $request->character;
         // $director = $request->director;

@@ -42,6 +42,30 @@ class WatchListController extends Controller
             'status' => 'Planning'
         ]);
         $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
+        // dd($movie);
+        return view('myWatchList')->with(compact('movie'));
+    }
+
+    public function changeStatus(Request $request){
+        $id = $request->movie_id;
+        $uid = Auth::user()->id;
+        // dd($uid);
+        $change = WatchList::where('movie_id','=',$id)->first();
+        if($request->status == 'planned'){
+            $change->status = 'Planning';
+        }elseif($request->status == 'watching'){
+            $change->status = 'Watching';
+        }elseif($request->status == 'finished'){
+            $change->status = 'Finished';
+        }elseif($request->status == 'remove'){
+            WatchList::where('movie_id','=',$id)->delete();
+        }
+        dd($change);
+        // $change->save();
+        $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
+        
+        // $movie->save();
+        // $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
         return view('myWatchList')->with(compact('movie'));
     }
 

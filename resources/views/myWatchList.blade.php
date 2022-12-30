@@ -73,7 +73,7 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(100%) sepia(1%) saturate(2%) hue-rotate(268deg) brightness(115%) contrast(101%);"></button>
                             </div>
                             <div class="modal-body">
-                              <form action="/changeprofile" method="POST" enctype="multipart/form-data">
+                              <form action="/changestatus/{{$m->id}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group col-md-10">
                                     <select class="bg-dark text-light form-select mx-3" name="status" id="status">

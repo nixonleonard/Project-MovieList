@@ -23,12 +23,13 @@
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-              <div class="carousel-item active">
+            @foreach ($randMovie as $r)
+            <div class="carousel-item active">
                 <div class="position-absolute text-light container" style="margin-left: 100px; margin-top:300px">
-                    <div class="fs-8">Action Adventure Drama | 2019</div>
-                    <b class="fs-1">Avengers : Endgame</b>
+                    <div class="fs-8">{{$r->name}} | {{date('Y', strtotime($r->release_date))}}</div>
+                    <b class="fs-1">{{$r->title}}</b>
                     <div class="card bg-transparent" style="width: 35rem; border:none;">
-                        <p class="col">After the devastating events of Avengers: Infinity War (2018), the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos's actions and undo the chaos to the universe, no matter what consequences may be in store, and no matter who they face...</p>
+                        <p class="col">{{$r->description}}</p>
                     </div>
                     @auth
                     @if (Auth::user()->is_admin == 'member')
@@ -41,9 +42,10 @@
                     @endif
                     @endauth
                 </div>
-                <img src="{{ url('storage/images/avangers.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="" />
+                <img src="{{asset($r->background)}}" class="d-block w-100" style="width: 1200px; height:602px" alt="" />
               </div>
-              <div class="carousel-item">
+            @endforeach
+              {{-- <div class="carousel-item">
                 <div class="position-absolute text-light container" style="margin-left: 100px; margin-top:300px">
                     <div class="fs-8">Action Adventure Fantasy | 2009</div>
                     <b class="fs-1">Avatar</b>
@@ -62,8 +64,8 @@
                     @endauth
                 </div >
                 <img src="{{ url('storage/images/avatar.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="...">
-              </div >
-              <div class="carousel-item">
+              </div > --}}
+              {{-- <div class="carousel-item">
                 <div class="position-absolute text-light container" style="margin-left: 100px; margin-top:300px">
                     <div class="fs-8">Animation Adventure Comedy Family Musical | 2009</div>
                     <b class="fs-1">Sing 2</b>
@@ -82,7 +84,7 @@
                     @endauth
                 </div>
                 <img src="{{ url('storage/images/sing.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="...">
-              </div>
+              </div> --}}
             </div>
         </div>
         <div class="text-light p-3">

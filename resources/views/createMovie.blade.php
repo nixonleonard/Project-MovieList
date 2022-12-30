@@ -41,7 +41,7 @@
         <select class="form-control custom-select-lg mb-3" name="genre[]" style="margin-top:10px; margin-left:10px;" >
             <option selected>-- Open this select menu --</option>
             @foreach ($genre as $g)
-                <option value="{{$g->name}}">{{$g->name}}</option>
+                <option value="{{$g->id}}">{{$g->name}}</option>
             @endforeach
 
           </select>
