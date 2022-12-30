@@ -27,6 +27,18 @@ class HomeController extends Controller
         $genre = Genre::all();
         $genre_id = $request->genre_id;
         $titles = DB::table('movie_genres')->join('movies','movies.id','=','movie_genres.movie_id')->where('movie_genres.genre_id','=',$genre_id)->get();
+
+        $sortid = $request->id;
+
+        if($sortid == 1){
+            $titles = Movie::all()->sortBy('created_at');
+        }elseif($sortid == 2){
+            $titles = Movie::all()->sortBy('title');
+        }else{
+            $titles = Movie::all()->sortByDesc('title');
+        }
+        // dd($tit);
+
         return view('home')->with(compact('movie','genre', 'titles'));
     }
 

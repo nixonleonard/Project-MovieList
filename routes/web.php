@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'getMovieGenre']);
 
 Route::get('/genre/{genre_id}', [HomeController::class, 'getMoviesFromGenre']);
+Route::get('/sort/{id}', [HomeController::class, 'getMoviesFromGenre']);
 
 Route::get('/moviedetail/{movie_id}', [HomeController::class, 'showMovieDetail']);
 Route::get('/deletemovie/{movie_id}', [HomeController::class, 'deleteMovie'])->middleware('authAdmin');
