@@ -41,10 +41,10 @@ Route::post('/login',[AuthController::class, 'login']);
 Route::get('/logout',[AuthController::class, 'logout']);
 // Route::get('/admin', [AuthController::class, 'adminPage'])->middleware('authAdmin');
 
-Route::get('/createmovie', [RegisterController::class, 'showGenre'])->middleware('authAdmin');
-// Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/createmovie', [HomeController::class, 'insertForMovieGenre'])->middleware('authAdmin');
+Route::post('/createmovie', [HomeController::class, 'insertMovie']);
 
-Route::get('/createactor', [ActorController::class, 'insertActorPage'])->middleware('authAdmin');
+Route::get('/createactor', [ActorController::class, 'insertForActorPage'])->middleware('authAdmin');
 Route::post('/createactor', [ActorController::class, 'insertActor'])->middleware('authAdmin');
 // Route::get('/editactor', [ActorController::class, 'insertActorPage'])->middleware('authAdmin');
 Route::get('/editactor/{actor_id}', [ActorController::class, 'showEditActors'])->middleware('authAdmin');
@@ -62,7 +62,8 @@ Route::get('/mywatchlist',[WatchListController::class, 'search'])->middleware('a
 Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
 
 
-Route::get('/myprofile',[AuthController::class, 'myProfilePage']);
+Route::get('/myprofile',[AuthController::class, 'myProfilePage'])->middleware('authLogin');
+Route::post('/updateprofile', [AuthController::class, 'updateProfile'])->middleware('authLogin');
 
 // Route::get('/actordetail', function(){
 //     return view('actorDetail');

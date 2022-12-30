@@ -33,7 +33,7 @@ class ActorController extends Controller
         return redirect('/home');
     }
 
-    public function insertActorPage(){
+    public function insertForActorPage(){
         return view('createActor');
     }
 

@@ -63,38 +63,38 @@
     <div class="card h-100 bg-transparent">
         <div class="card-body text-light">
                 <h5 class="mb-2">Update Profile</h5>
-                <form action="/login" method="post" class="row align-items-center">
+                <form action="/updateprofile" method="post" class="row align-items-center" enctype="multipart/form-data">
                     @csrf
                     <div class="align-items-center">
                         <div class="form-group row d-flex justify-content-center pt-2">
                           <label for="username" class="col-sm-3 col-form-label">Username</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="username" value="{{$user->username}}">
+                            <input type="text" class="form-control" name="username" id="username" value="{{$user->username}}">
                           </div>
                         </div>
                         <div class="form-group row d-flex justify-content-center pt-2">
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-8">
-                              <input type="email" class="form-control" id="email" value="{{$user->email}}">
+                              <input type="email" class="form-control" name="email" id="email" value="{{$user->email}}">
                             </div>
                         </div>
 
                         <div class="form-group row d-flex justify-content-center pt-2">
                             <label for="dob" class="col-sm-3 col-form-label">DOB</label>
                             <div class="col-sm-8">
-                              <input type="date" class="form-control" id="dob" value="{{$user->DOB}}">
+                              <input type="date" class="form-control" name="dob" id="dob" value="{{$user->DOB}}">
                             </div>
                           </div>
 
                         <div class="form-group row d-flex justify-content-center pt-2">
                           <label for="phone" class="col-sm-3 col-form-label">Phone</label>
                           <div class="col-sm-8">
-                            <input type="number" class="form-control" id="phone" value="{{$user->phone}}">
+                            <input type="text" class="form-control" name="phone" id="phone" value="{{$user->phone}}">
                           </div>
                         </div>
 
                         <div class="form-group col-md-11">
-                            <button type="submit" style="margin-top:20px; margin-left:22px;" class="btn btn-primary form-control">Save Changes</button>
+                            <button type="submit" style="margin-top:20px; margin-left:22px;" class="btn btn-danger form-control">Save Changes</button>
                         </div>
 
                     </div>

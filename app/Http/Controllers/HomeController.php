@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actor;
 use App\Models\Character;
 use App\Models\Genre;
 use App\Models\Movie;
@@ -11,18 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function showHome(){
-        return view('home');
-    }
-
-    // public function showHomeA(){
-    //     return view('home');
-    // }
-
-    // public function showHomeU(){
-    //     return view('home');
-    // }
-
     public function getMovieGenre(Request $request)
     {
         $movie = Movie::all();
@@ -56,4 +45,54 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
+    public function insertForMovieGenre(){
+        $genre = Genre::all();
+        $actor = Actor::all();
+        return view('createMovie')->with(compact('genre', 'actor'));
+    }
+
+    public function insertMovie(Request $request){
+
+        // $title = $request->title;
+        // $description = $request->description;
+        // $genre = $request->genre;
+        // $actor = $request->actor;
+        // $character = $request->character;
+        // $director = $request->director;
+        // $release_date = $request->release_date;
+        // $thumbnail = $request->thumbnail;
+        // $background = $request->background;
+
+        // $this->validate($request, [
+        //     'name' => 'required|min:3',
+        //     'gender' => 'required',
+        //     'biography' => 'required|min:10',
+        //     'dob' => 'required',
+        //     'pob' => 'required',
+        //     'image' => 'required|mimes:jpeg,jpg,png,gif',
+        //     'popularity' => 'required|numeric',
+        // ]);
+
+        // $file = $request->file('image');
+        // $fileName = $file->getClientOriginalName();
+        // $path = public_path().'/storage/images' ;
+        // $file->move($path,$fileName);
+
+        // // Storage::putFileAs('/public/images', $image, $image->getClientOriginalName());
+        // Movie::create([
+        //     'name' => $name,
+        //     'gender' => $gender,
+        //     'biography' => $biography,
+        //     'DOB' => $dob,
+        //     'POB' => $pob,
+        //     'image' => 'storage/images/'.$image->getClientOriginalName(),
+        //     'popularity' => $popularity,
+        // ]);
+
+        // MovieGenre::create([
+
+        // ])
+
+        // return redirect('/actor');
+    }
 }

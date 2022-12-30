@@ -44,4 +44,34 @@ class AuthController extends Controller
         $user = Auth::user();
         return view('profilePage')->with(compact('user'));
     }
+
+    public function updateProfile(Request $request){
+
+        // $this->validate($request, [
+        //     'username' => 'required',
+        //     'email' => 'required|email',
+        //     'dob' => 'required|date',
+        //     'phone' => 'required|min:5|max:13|numeric',
+        // ]);
+
+        // dd($request);
+
+        // $username = $request->username;
+        // $email = $request->email;
+        // $dob = $request->dob;
+        // $phone = $request->phone;
+
+        // $user = Auth::user();
+
+        // $user->username = $username;
+        // $user->email = $email;
+        // $user->DOB = $dob;
+        // $user->phone = $phone;
+
+        // // dd($request);
+        // // $user->update($request->all());
+
+        // // $user->save();
+        return redirect('/myprofile');
+    }
 }
