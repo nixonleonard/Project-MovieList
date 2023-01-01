@@ -9,6 +9,17 @@ class Movie extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description',
+        'release_date',
+        'director',
+        'thumbnail',
+        'background'
+    ];
+
+    public $timestamps = false;
+
     public function watchList(){
         return $this->belongsTo(WatchList::class);
     }

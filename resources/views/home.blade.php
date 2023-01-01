@@ -160,9 +160,8 @@
                         <div class="card text-white bg-transparent mb-3" style="width: 15rem;">
                             <a href="/moviedetail/{{$t->id}}"><img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                             <div class="card-body px-4" style="height: 5rem;">
-                            {{-- <h6 style="height: 1rem;">{{$t->title}} </h6>
-                            <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p> --}}
-                            @if (Auth::user()->is_admin == 'member')
+
+                            {{-- @if (Auth::user()->is_admin == 'member')
                             <h6 style="height: 1rem;">{{$t->title}} </h6>
                             <div class="d-flex justify-content-between">
                                 <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
@@ -173,7 +172,10 @@
                                     </button>
                                 </form>
                             </div>
-                            @endif
+                            @else --}}
+                            <h6 style="height: 1rem;">{{$t->title}} </h6>
+                            <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
+                            {{-- @endif --}}
                             </div>
                         </div>
                     </div>

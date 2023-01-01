@@ -36,15 +36,18 @@
         <label for="description">Description</label>
         <textarea type="text" style="margin-top:10px; margin-left:10px;" class="form-control" id="description" name="description" rows="5"></textarea>
       </div>
-      <div class="form-group col-md-10">
-        <label for="inputAddress">Genre</label>
-        <select class="form-control custom-select-lg mb-3" name="genre[]" style="margin-top:10px; margin-left:10px;" >
-            <option selected>-- Open this select menu --</option>
-            @foreach ($genre as $g)
-                <option value="{{$g->id}}">{{$g->name}}</option>
-            @endforeach
-
-          </select>
+    <div class="form-check-inline col-md-10 py-2">
+          <label for="inputAddress">Genre</label>
+          <div class="d-flex flex-nowrap">
+              @foreach ($genre as $g)
+              <div class="d-flex">
+                  <input class="form-check-input" type="checkbox" name="genre[]" value="{{$g->id}}" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                      {{$g->name}}
+                    </label>
+                </div>
+                @endforeach
+            </div>
       </div>
 
       <div class="form-group col-md-10">
@@ -56,16 +59,31 @@
                         <div class="row" style="padding: 10px 10px 0">
                             <div class="col">
                                 <label for="actor">Actor</label>
-                                <select name="actor[]" id="" class="form-control" style="margin: 10px 10px 0 0">
+                                <select name="actor[0][id]" id="" class="form-control" style="margin: 10px 10px 0 0">
                                     <option value="">-- Open this selected menu --</option>
                                     @foreach ($actor as $a)
-                                    <option value="{{$a->name}}">{{$a->name}}</option>
+                                    <option value="{{$a->id}}">{{$a->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="character">Character Name</label>
-                              <input type="text" class="form-control" name="character[]">
+                              <input type="text" class="form-control" name="character[0][cname]">
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 10px 10px 0">
+                            <div class="col">
+                                <label for="actor">Actor</label>
+                                <select name="actor[1][id]" id="" class="form-control" style="margin: 10px 10px 0 0">
+                                    <option value="">-- Open this selected menu --</option>
+                                    @foreach ($actor as $a)
+                                    <option value="{{$a->id}}">{{$a->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="character">Character Name</label>
+                              <input type="text" class="form-control" name="character[1][cname]">
                             </div>
                         </div>
                     </tbody>
@@ -79,11 +97,13 @@
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <script>
+        let i = 1;
         function dynamicForm(){
-            var tr =  "<div class= 'row' style='padding: 10px 10px'>"+
+            i++;
+            var div =  "<div class= 'row' style='padding: 10px 10px'>"+
                                 "<div class='col'>"+
                                     "<label for='actor'>Actor</label>"+
-                                    "<select name='actor[]' id='' class='form-control' style='margin: 10px 10px 0 0'>"+
+                                    "<select name='actor[${i}][id]' id='' class='form-control' style='margin: 10px 10px 0 0'>"+
                                         "<option value=''>-- Open this selected menu --</option>"+
                                         "@foreach ($actor as $a)"+
                                             "<option value='{{$a->name}}''>{{$a->name}}</option>"+
@@ -92,10 +112,11 @@
                                 "</div>"+
                                 "<div class='col'>"+
                                     "<label for='character'>Character Name</label>"+
-                                    "<input type='text' class='form-control' name='character[]'>"+
+                                    "<input type='text' class='form-control' name='character[${i}][cname]'>"+
                                "</div>"+
                             "</div>";
-            $('tbody').append(tr);
+            $('tbody').append(div);
+
         }
       </script>
 
@@ -110,8 +131,8 @@
       </div>
 
       <div class="form-group col-md-10">
-        <label for="image">Image URL</label>
-        <input type="file" class="form-control" name="image" id="image">
+        <label for="thumbnail">Image URL</label>
+        <input type="file" class="form-control" name="thumbnail" id="image">
       </div>
 
       <div class="form-group col-md-10">
@@ -124,6 +145,15 @@
       </div>
 
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
   </form>
 
 @endsection

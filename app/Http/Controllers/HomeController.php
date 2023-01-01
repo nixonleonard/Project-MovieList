@@ -69,53 +69,61 @@ class HomeController extends Controller
 
     public function insertMovie(Request $request){
 
-        // $title = $request->title;
-        // $description = $request->description;
-        // $genre = $request->genre;
+        $this->validate($request, [
+            'title' => 'required|min:2|max:50',
+            'description' => 'required|min:8',
+            'genre' => 'required',
+            'actor.*.id' => 'required',
+            'character.*.cname' => 'required',
+            'director' => 'required|min:3',
+            'release_date' => 'required',
+            'thumbnail' => 'required|mimes:jpeg,jpg,png,gif',
+            'background'=> 'required|mimes:jpeg,jpg,png,gif'
+        ]);
 
-        // for($i = 0; i<count($genre); $i++){
-        //     $save = [
-        //         'genre_id' => $genre[$i],
+        $file_t = $request->file('thumbnail');
+        $fileName = $file_t->getClientOriginalName();
+        $path = public_path().'/storage/images' ;
+        $file_t->move($path,$fileName);
 
-        //     ]
-        // }
-        // $actor = $request->actor;
-        // $character = $request->character;
-        // $director = $request->director;
-        // $release_date = $request->release_date;
-        // $thumbnail = $request->thumbnail;
-        // $background = $request->background;
+        $file_bg = $request->file('background');
+        $fileName = $file_bg->getClientOriginalName();
+        $path = public_path().'/storage/images' ;
+        $file_bg->move($path,$fileName);
 
-        // $this->validate($request, [
-        //     'name' => 'required|min:3',
-        //     'gender' => 'required',
-        //     'biography' => 'required|min:10',
-        //     'dob' => 'required',
-        //     'pob' => 'required',
-        //     'image' => 'required|mimes:jpeg,jpg,png,gif',
-        //     'popularity' => 'required|numeric',
-        // ]);
+        DB::transaction(function () use($request){
+            $movie = Movie::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'release_date' => $request->release_date,
+                'director' => $request->director,
+                'thumbnail' => 'storage/images/movies/'.$request->thumbnail->getClientOriginalName(),
+                'background' => 'storage/images/movies/'.$request->background->getClientOriginalName(),
+            ]);
 
-        // $file = $request->file('image');
-        // $fileName = $file->getClientOriginalName();
-        // $path = public_path().'/storage/images' ;
-        // $file->move($path,$fileName);
 
-        // // Storage::putFileAs('/public/images', $image, $image->getClientOriginalName());
-        // Movie::create([
-        //     'name' => $name,
-        //     'gender' => $gender,
-        //     'biography' => $biography,
-        //     'DOB' => $dob,
-        //     'POB' => $pob,
-        //     'image' => 'storage/images/'.$image->getClientOriginalName(),
-        //     'popularity' => $popularity,
-        // ]);
+            foreach ($request->genre as $g => $id){
+                MovieGenre::create([
+                    'movie_id' => $movie->id,
+                    'genre_id' => $id,
+                ]);
+            }
 
-        // MovieGenre::create([
+            for ($i = 0; $i < count($request->actor); $i++) {
+                echo (count($request->actor));
+                echo "{{$request->actor[$i]['id']}}";
+                dd(count($request->actor));
+                Character::create([
+                    'movie_id' => $movie->id,
+                    'actor_id' => $request->actor[$i]['id'],
+                    'cname' => $request->character[$i]['cname'],
+                ]);
+            }
+            // dd($movie);
+        });
 
-        // ])
 
-        // return redirect('/actor');
+
+        return redirect('/home');
     }
 }
