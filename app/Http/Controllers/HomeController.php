@@ -20,7 +20,6 @@ class HomeController extends Controller
         $search = $request->query('search');
         $titles = Movie::where('title', 'LIKE', "%$search%")->paginate(5)->appends(['search' => $search]);
         $randMovie = DB::table('movie_genres')->join('movies','movies.id','=','movie_genres.movie_id')->join('genres','movie_genres.genre_id','=','genres.id')->inRandomOrder()->limit(3)->get();
-        // dd($randMovie);
         return view('home')->with(compact('movie','genre','titles','randMovie'));
     }
 

@@ -50,7 +50,7 @@ Route::get('/editactor/{actor_id}', [ActorController::class, 'showEditActors'])-
 Route::post('/editactor/{actor_id}', [ActorController::class, 'editedActors'])->middleware('authAdmin');
 
 Route::get('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
-// Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
+Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
 Route::post('/addtowatchlist/{movie_id}',[WatchListController::class, 'addToWatchList'])->middleware('authUser');
 Route::post('/changestatus/{movie_id}',[WatchListController::class, 'changeStatus'])->middleware('authUser');
 

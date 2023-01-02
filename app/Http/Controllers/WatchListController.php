@@ -11,28 +11,32 @@ use Illuminate\Support\Facades\DB;
 class WatchListController extends Controller
 {
     public function search(Request $request){
-        if($request->search){
-            $movie = WatchList::with('movie')
-            ->where('user_id', Auth::user()->id)
-            ->where('title', 'LIKE', "%$request->search%")
-            ->join('movies', 'movie_id', '=', 'movies.id')
-            ->paginate(4);
+        // dd($request->status);
+        $search = $request->query('search');
+        // $titles = Movie::where('title', 'LIKE', "%$search%")->paginate(5)->appends(['search' => $search]);
+        if($search){
+            $movie = DB::table('watch_lists')->where('user_id', Auth::user()->id)->where('title', 'LIKE', "%$request->search%")->join('movies', 'movie_id', '=', 'movies.id')->paginate(4)->appends(['search' => $search]);
+            // $movie = WatchList::with('movies')->where('user_id', Auth::user()->id)->where('title', 'LIKE', "%$request->search%")->join('movies', 'movie_id', '=', 'movies.id')->paginate(4);
         }else if($request->status){
-            if($request->status=='all') $request->status='';
-            $movie = WatchList::with('movie')
-            ->where('user_id', Auth::user()->id)
-            ->where('status', 'LIKE', "%$request->search%")
-            ->join('movies', 'movie_id', '=', 'movies.id')
-            ->paginate(4);
+            if($request->status=='filter'){
+                $movie = DB::table('watch_lists')->where('user_id', Auth::user()->id)->join('movies', 'watch_lists.movie_id', '=', 'movies.id')->paginate(4);// $movie = WatchList::with('movies')->where('user_id', Auth::user()->id)->where('status', '=', 'Planning')->join('movies', 'movie_id', '=', 'movies.id')->paginate(4);
+            }elseif($request->status=='all'){
+                $movie = DB::table('watch_lists')->where('user_id', Auth::user()->id)->join('movies', 'watch_lists.movie_id', '=', 'movies.id')->paginate(4);
+                // $movie = WatchList::with('movies')->where('user_id', Auth::user()->id)->join('movies', 'movie_id', '=', 'movies.id')->paginate(4);
+            }elseif($request->status=='planned'){
+                $movie = DB::table('watch_lists')->where('user_id', Auth::user()->id)->where('status', '=', 'Planning')->join('movies', 'watch_lists.movie_id', '=', 'movies.id')->paginate(4);
+                // $movie = WatchList::with('movies')->where('user_id', Auth::user()->id)->where('status', '=', 'Planning')->join('movies', 'movie_id', '=', 'movies.id')->paginate(4);
+            }elseif($request->status=='watching'){
+                $movie = DB::table('watch_lists')->where('user_id', Auth::user()->id)->where('status', '=', 'Watching')->join('movies', 'watch_lists.movie_id', '=', 'movies.id')->paginate(4);
+                // $movie = WatchList::with('movies')->where('user_id', Auth::user()->id)->where('status', '=', 'Watching')->join('movies', 'movie_id', '=', 'movies.id')->paginate(4);
+            }elseif($request->status=='finished'){
+                $movie = DB::table('watch_lists')->where('user_id', Auth::user()->id)->where('status', '=', 'Finished')->join('movies', 'watch_lists.movie_id', '=', 'movies.id')->paginate(4);
+                // $movie = WatchList::with('movies')->where('user_id', Auth::user()->id)->where('status', '=', 'Finished')->join('movies', 'movie_id', '=', 'movies.id')->paginate(4);
+            }
         }else{
-            $movies = WatchList::where('user_id', Auth::user()->id)->paginate(4);
+            $movie = WatchList::where('user_id', Auth::user()->id)->join('movies', 'watch_lists.movie_id', '=', 'movies.id')->paginate(4);
         }
-        $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
-        $selected = $request->status;
-        $movies->appends([
-            'title'=>$request->search,
-        ]);
-        return view('myWatchList')->with(compact('movies', 'selected', 'movie'));
+        return view('myWatchList')->with(compact('movie'));
     }
 
     public function addToWatchList(Request $request){
@@ -59,7 +63,8 @@ class WatchListController extends Controller
                 'status' => $change
             ]);
         }elseif($request->status == 'watching'){
-            $change = 'Watching';WatchList::create([
+            $change = 'Watching';
+            WatchList::create([
                 'user_id' => $uid,
                 'movie_id' => $id,
                 'status' => $change
