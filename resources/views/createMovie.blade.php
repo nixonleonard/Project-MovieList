@@ -97,26 +97,25 @@
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <script>
-        let i = 1;
+        let i = 2;
         function dynamicForm(){
-            i++;
-            var div =  "<div class= 'row' style='padding: 10px 10px'>"+
-                                "<div class='col'>"+
-                                    "<label for='actor'>Actor</label>"+
-                                    "<select name='actor[${i}][id]' id='' class='form-control' style='margin: 10px 10px 0 0'>"+
-                                        "<option value=''>-- Open this selected menu --</option>"+
-                                        "@foreach ($actor as $a)"+
-                                            "<option value='{{$a->name}}''>{{$a->name}}</option>"+
-                                        "@endforeach"+
-                                    "</select>"+
-                                "</div>"+
-                                "<div class='col'>"+
-                                    "<label for='character'>Character Name</label>"+
-                                    "<input type='text' class='form-control' name='character[${i}][cname]'>"+
-                               "</div>"+
-                            "</div>";
+            var div =  `<div class= 'row' style='padding: 10px 10px'>
+                                <div class='col'>+
+                                    <label for='actor'>Actor</label>
+                                    <select name='actor[${i}][id]' id='' class='form-control' style='margin: 10px 10px 0 0'>
+                                        <option value=''>-- Open this selected menu --</option>
+                                        @foreach ($actor as $a)
+                                            <option value='{{$a->id}}''>{{$a->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class='col'>
+                                    <label for='character'>Character Name</label>
+                                    <input type='text' class='form-control' name='character[${i}][cname]'>
+                               </div>
+                            </div>`
+                            i++;
             $('tbody').append(div);
-
         }
       </script>
 

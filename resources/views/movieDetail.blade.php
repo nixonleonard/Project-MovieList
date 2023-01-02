@@ -6,7 +6,7 @@
       <div class="card bg-transparent mb-3" style="max-width: auto; border:none;">
         <div class="row g-0" style="padding-top: 3rem;">
           <div class="col-md-4 d-flex justify-content-center">
-            <img src="{{asset($movie->thumbnail)}}" style="height: 25rem; object-fit: cover;" alt="">
+            <img src="{{asset($movie->thumbnail)}}" style="height: 25rem; width:17rem; object-fit: cover;" alt="">
           </div>
           <div class="col-md-8">
             <div class="card-body text-light" style="padding-right: 10rem;">
@@ -17,7 +17,7 @@
                     @auth
                     @if (Auth::user()->is_admin == 'admin')
                     <div class="col d-flex justify-content-end" style="padding-right: 2rem;">
-                        <a href="/editmovie"><i class="bi bi-pencil-square" style="color: white; padding-right: 7px"></i></a>
+                        <a href="/editmovie/{{$movie->id}}"><i class="bi bi-pencil-square" style="color: white; padding-right: 7px"></i></a>
                         <a href="/deletemovie/{{$movie->id}}"><i class="bi bi-trash3" style="color: white"></i></i></a>
                     </div>
                     @endif

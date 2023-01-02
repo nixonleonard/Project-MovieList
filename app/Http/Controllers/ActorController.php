@@ -122,7 +122,7 @@ class ActorController extends Controller
             $path = public_path().'/storage/images' ;
             $file->move($path,$fileName);
 
-            $actor->image = 'storage/images/actors/'.$image->getClientOriginalName();
+            $actor->image = 'storage/images/'.$image->getClientOriginalName();
         }
 
         $actor->save();

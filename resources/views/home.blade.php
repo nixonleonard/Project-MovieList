@@ -93,7 +93,7 @@
             <hr>
             <div class="card-group px-5">
                 @foreach ($movie as $m)
-                    <div class="col">
+                    <div class="col-auto px-3">
                         <div class="card text-white bg-transparent mb-3" style="width: 15rem; border:none;">
                             <a href="/moviedetail/{{$m->id}}"><img src="{{asset($m->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                             <div class="card-body px-4" style="height: 5rem;">
@@ -104,6 +104,13 @@
                     </div>
                 @endforeach
             </div>
+
+            <div class="d-flex justify-content-center page-item disabled" style="color: white">
+                <button class="text-light">
+                    {{$movie->links()}}
+                </button>
+            </div>
+
         </div>
 
         <div class="text-light">

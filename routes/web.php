@@ -43,7 +43,9 @@ Route::get('/logout',[AuthController::class, 'logout']);
 // Route::get('/admin', [AuthController::class, 'adminPage'])->middleware('authAdmin');
 
 Route::get('/createmovie', [HomeController::class, 'insertForMovieGenre'])->middleware('authAdmin');
-Route::post('/createmovie', [HomeController::class, 'insertMovie']);
+Route::post('/createmovie', [HomeController::class, 'insertMovie'])->middleware('authAdmin');;
+Route::get('/editmovie/{movie_id}', [HomeController::class, 'showEditMovies'])->middleware('authAdmin');
+Route::post('/editmovie/{movie_id}', [HomeController::class, 'editedMovies'])->middleware('authAdmin');
 
 Route::get('/createactor', [ActorController::class, 'insertForActorPage'])->middleware('authAdmin');
 Route::post('/createactor', [ActorController::class, 'insertActor'])->middleware('authAdmin');
@@ -51,9 +53,9 @@ Route::post('/createactor', [ActorController::class, 'insertActor'])->middleware
 Route::get('/editactor/{actor_id}', [ActorController::class, 'showEditActors'])->middleware('authAdmin');
 Route::post('/editactor/{actor_id}', [ActorController::class, 'editedActors'])->middleware('authAdmin');
 
-Route::get('/editmovie', function () {
-    return view('editMovie');
-});
+// Route::get('/editmovie', function () {
+//     return view('editMovie');
+// });
 
 // Route::get('/editactor', function () {
 //     return view('editActor');
