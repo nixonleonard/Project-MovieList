@@ -49,23 +49,32 @@ class WatchListController extends Controller
     public function changeStatus(Request $request){
         $id = $request->movie_id;
         $uid = Auth::user()->id;
-        // dd($uid);
-        $change = WatchList::where('movie_id','=',$id)->first();
+        WatchList::where('movie_id','=',$id)->delete();
+
         if($request->status == 'planned'){
-            $change->status = 'Planning';
+            $change = 'Planning';
+            WatchList::create([
+                'user_id' => $uid,
+                'movie_id' => $id,
+                'status' => $change
+            ]);
         }elseif($request->status == 'watching'){
-            $change->status = 'Watching';
+            $change = 'Watching';WatchList::create([
+                'user_id' => $uid,
+                'movie_id' => $id,
+                'status' => $change
+            ]);
         }elseif($request->status == 'finished'){
-            $change->status = 'Finished';
-        }elseif($request->status == 'remove'){
-            WatchList::where('movie_id','=',$id)->delete();
+            $change = 'Finished';
+            WatchList::create([
+                'user_id' => $uid,
+                'movie_id' => $id,
+                'status' => $change
+            ]);
         }
-        dd($change);
-        // $change->save();
+
         $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
-        
-        // $movie->save();
-        // $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
+
         return view('myWatchList')->with(compact('movie'));
     }
 

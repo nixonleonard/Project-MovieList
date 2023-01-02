@@ -159,7 +159,7 @@ class HomeController extends Controller
         $fileName = $file_bg->getClientOriginalName();
         $path = public_path().'/storage/images' ;
         $file_bg->move($path,$fileName);
-        
+
         DB::transaction(function () use($request){
             Movie::findOrFail($request->movie_id)->update([
                 'title' => $request->title,

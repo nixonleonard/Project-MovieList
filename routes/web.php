@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'getMovieGenre']);
 
 Route::get('/home', [HomeController::class, 'getMovieGenre']);
 
@@ -40,7 +38,6 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [AuthController::class, 'loginPage']);
 Route::post('/login',[AuthController::class, 'login']);
 Route::get('/logout',[AuthController::class, 'logout']);
-// Route::get('/admin', [AuthController::class, 'adminPage'])->middleware('authAdmin');
 
 Route::get('/createmovie', [HomeController::class, 'insertForMovieGenre'])->middleware('authAdmin');
 Route::post('/createmovie', [HomeController::class, 'insertMovie'])->middleware('authAdmin');;
@@ -49,17 +46,8 @@ Route::post('/editmovie/{movie_id}', [HomeController::class, 'editedMovies'])->m
 
 Route::get('/createactor', [ActorController::class, 'insertForActorPage'])->middleware('authAdmin');
 Route::post('/createactor', [ActorController::class, 'insertActor'])->middleware('authAdmin');
-// Route::get('/editactor', [ActorController::class, 'insertActorPage'])->middleware('authAdmin');
 Route::get('/editactor/{actor_id}', [ActorController::class, 'showEditActors'])->middleware('authAdmin');
 Route::post('/editactor/{actor_id}', [ActorController::class, 'editedActors'])->middleware('authAdmin');
-
-// Route::get('/editmovie', function () {
-//     return view('editMovie');
-// });
-
-// Route::get('/editactor', function () {
-//     return view('editActor');
-// });
 
 Route::get('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
 // Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
@@ -69,10 +57,3 @@ Route::post('/changestatus/{movie_id}',[WatchListController::class, 'changeStatu
 Route::get('/myprofile',[AuthController::class, 'myProfilePage'])->middleware('authLogin');
 Route::post('/updateprofile', [AuthController::class, 'updateProfile'])->middleware('authLogin');
 Route::post('/changeprofile', [AuthController::class, 'updateProfilePict'])->middleware('authLogin');
-// Route::get('/actordetail', function(){
-//     return view('actorDetail');
-// });
-
-// Route::get('/moviedetail', function(){
-//     return view('movieDetail');
-// });

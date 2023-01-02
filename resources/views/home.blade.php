@@ -34,7 +34,7 @@
                     @auth
                     @if (Auth::user()->is_admin == 'member')
                     <div class=" d-flex justify-content-start" style="padding-right: 2rem">
-                        <form action="/addtowatchlist/1" method="post" enctype="multipart/form-data">
+                        <form action="/addtowatchlist/{{$r->id}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <button type="submit" class="btn btn-danger">+ Add to WatchList</button>
                         </form>
@@ -168,21 +168,19 @@
                             <a href="/moviedetail/{{$t->id}}"><img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                             <div class="card-body px-4" style="height: 5rem;">
 
-                            {{-- @if (Auth::user()->is_admin == 'member')
+                            @if (Auth::user()->is_admin == 'member')
                             <h6 style="height: 1rem;">{{$t->title}} </h6>
                             <div class="d-flex justify-content-between">
                                 <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
-                                <form action="/addtowatchlist/{{$t->id}}" method="post">
+                                <form action="/addtowatchlist/{{$t->id}}" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <button type="submit" class="btn text-muted">
-                                          +
-                                    </button>
+                                    <button type="submit" class="btn btn-danger fw-bold" style="width: 80px; height:30px; font-size:12px">+ Add</button>
                                 </form>
                             </div>
-                            @else --}}
+                            @else
                             <h6 style="height: 1rem;">{{$t->title}} </h6>
                             <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
-                            {{-- @endif --}}
+                            @endif
                             </div>
                         </div>
                     </div>
