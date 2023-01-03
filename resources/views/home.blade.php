@@ -168,6 +168,7 @@
                             <a href="/moviedetail/{{$t->id}}"><img src="{{asset($t->thumbnail)}}" class="card-img-top" style = "height:20rem;" alt="..."></a>
                             <div class="card-body px-4" style="height: 5rem;">
 
+                            @auth
                             @if (Auth::user()->is_admin == 'member')
                             <h6 style="height: 1rem;">{{$t->title}} </h6>
                             <div class="d-flex justify-content-between">
@@ -177,10 +178,10 @@
                                     <button type="submit" class="btn btn-danger fw-bold" style="width: 80px; height:30px; font-size:12px">+ Add</button>
                                 </form>
                             </div>
-                            @else
+                            @endif
+                            @endauth
                             <h6 style="height: 1rem;">{{$t->title}} </h6>
                             <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
-                            @endif
                             </div>
                         </div>
                     </div>
