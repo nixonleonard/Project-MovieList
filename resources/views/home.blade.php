@@ -45,46 +45,6 @@
                 <img src="{{asset($r->background)}}" class="d-block w-100" style="width: 1200px; height:602px" alt="" />
               </div>
             @endforeach
-              {{-- <div class="carousel-item">
-                <div class="position-absolute text-light container" style="margin-left: 100px; margin-top:300px">
-                    <div class="fs-8">Action Adventure Fantasy | 2009</div>
-                    <b class="fs-1">Avatar</b>
-                    <div class="card bg-transparent" style="width: 35rem; border:none;">
-                        <p class="col">When his brother is killed in a robbery, paraplegic Marine Jake Sully decides to take his place in a mission on the distant world of Pandora. There he learns of greedy corporate figurehead Parker Selfridge's intentions of driving off the native humanoid "Na'vi" in order to mine for the precious material scattered throughout their rich woodland.</p>
-                    </div>
-                    @auth
-                    @if (Auth::user()->is_admin == 'member')
-                    <div class=" d-flex justify-content-start" style="padding-right: 2rem">
-                        <form action="/addtowatchlist/2" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">+ Add to WatchList</button>
-                        </form>
-                    </div>
-                    @endif
-                    @endauth
-                </div >
-                <img src="{{ url('storage/images/avatar.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="...">
-              </div > --}}
-              {{-- <div class="carousel-item">
-                <div class="position-absolute text-light container" style="margin-left: 100px; margin-top:300px">
-                    <div class="fs-8">Animation Adventure Comedy Family Musical | 2009</div>
-                    <b class="fs-1">Sing 2</b>
-                    <div class="card bg-transparent" style="width: 35rem; border:none;">
-                        <p class="col">With his theatrical company a local success, Buster Moon is dreaming of bigger things. Unfortunately, when a talent scout dismisses their work as inadequate for the big time, Buster is driven to prove her wrong. With that goal in mind, Buster inspires his players to gamble everything to sneak into a talent audition in Redshore City for the demanding entertainment mogul Jimmy Crystal.</p>
-                    </div>
-                    @auth
-                    @if (Auth::user()->is_admin == 'member')
-                    <div class=" d-flex justify-content-start" style="padding-right: 2rem">
-                        <form action="/addtowatchlist/3" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">+ Add to WatchList</button>
-                        </form>
-                    </div>
-                    @endif
-                    @endauth
-                </div>
-                <img src="{{ url('storage/images/sing.jpg') }}" class="d-block w-100" style="width: 1200px; height:602px" alt="...">
-              </div> --}}
             </div>
         </div>
         <div class="text-light p-3">
@@ -178,30 +138,18 @@
                                     <button type="submit" class="btn btn-danger fw-bold" style="width: 80px; height:30px; font-size:12px">+ Add</button>
                                 </form>
                             </div>
-                            @endif
-                            @endauth
+                            @else
                             <h6 style="height: 1rem;">{{$t->title}} </h6>
                             <p class="text-muted" style="height: 2rem;">{{date('Y', strtotime($t->release_date))}} </p>
+                            @endif
+                            @endauth
+
                             </div>
                         </div>
                     </div>
 
                 @endforeach
             </div>
-
-            {{-- @if (Auth::user()->is_admin == 'member')
-                <button class="border-0 btn py-3 bg-danger text-white watchlist fa-solid
-                @php
-                    $check=false
-                @endphp
-                @foreach ($ as )
-
-                @endforeach">
-
-                </button>
-            @endif --}}
-
-
         </div>
 
     </div>

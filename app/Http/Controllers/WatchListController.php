@@ -34,9 +34,10 @@ class WatchListController extends Controller
                 // $movie = WatchList::with('movies')->where('user_id', Auth::user()->id)->where('status', '=', 'Finished')->join('movies', 'movie_id', '=', 'movies.id')->paginate(4);
             }
         }else{
-            $movie = WatchList::where('user_id', Auth::user()->id)->join('movies', 'watch_lists.movie_id', '=', 'movies.id')->paginate(4);
+            $movie = WatchList::where('user_id', Auth::user()->id)->leftJoin('movies', 'watch_lists.movie_id', '=', 'movies.id')->paginate(4);
+            $ids = DB::table('watch_lists')->join('movies', 'watch_lists.movie_id', '=', 'movies.id')->get();
         }
-        return view('myWatchList')->with(compact('movie'));
+        return view('myWatchList')->with(compact('movie','ids'));
     }
 
     public function addToWatchList(Request $request){
@@ -45,7 +46,7 @@ class WatchListController extends Controller
             'movie_id' => $request->movie_id,
             'status' => 'Planning'
         ]);
-        $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
+        $movie = DB::table('watch_lists')->join('movies','movies.id','=','watch_lists.movie_id')->get();
         // dd($movie);
         return view('myWatchList')->with(compact('movie'));
     }

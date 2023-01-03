@@ -14,6 +14,7 @@ class CreateWatchListsTable extends Migration
     public function up()
     {
         Schema::create('watch_lists', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign("user_id")->references("id")->on("users")->onUpdate("cascade")->onDelete("cascade");
             $table->unsignedBigInteger('movie_id');
