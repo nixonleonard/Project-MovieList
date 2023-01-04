@@ -50,7 +50,6 @@
             </div>
         </div>
 
-        {{-- table content --}}
         @if ($movie != null)
             @foreach ($movie as $m)
             <div class="row text-light bg-dark my-3 d-flex align-items-center" style="height: 100px">
@@ -64,17 +63,18 @@
                     {{$m->status}}
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#popup">...</button>
-                    <div class="modal fade" id="popup" tabindex="-3" aria-labelledby="popup" aria-hidden="true">
+                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#popup{{$m->id_wl}}">...</button>
+                    <div class="modal fade" id="popup{{$m->id_wl}}" tabindex="-3" aria-labelledby="popup{{$m->id_wl}}" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content bg-dark">
                             <div class="modal-header">
-                              <h4 class="modal-title" id="popup">Change Status</h4>
+                              <h4 class="modal-title" id="popup{{$m->id_wl}}">Change Status</h4>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(100%) sepia(1%) saturate(2%) hue-rotate(268deg) brightness(115%) contrast(101%);"></button>
                             </div>
                             <div class="modal-body">
-                              <form action="/changestatus/{{$m->id}}" method="post" enctype="multipart/form-data">
+                              <form action="/changestatus/{{$m->id_wl}}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" value="{{$m->id}}" name="id">
                                 <div class="form-group col-md-10">
                                     <select class="bg-dark text-light form-select mx-3" name="status" id="status">
                                         <option value="planned">Planned</option>
@@ -99,7 +99,7 @@
 
         @endif
 
-        {{-- <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
             <p class="text-secondary">Showing
                 <span class="fw-bold">{{$movie->firstItem()}}</span>
                 to
@@ -111,7 +111,7 @@
             <div class="d-flex">
                 {{$movie->links()}}
             </div>
-        </div> --}}
+        </div>
     </div>
 </div>
 

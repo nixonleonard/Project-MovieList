@@ -52,7 +52,7 @@ Route::post('/editactor/{actor_id}', [ActorController::class, 'editedActors'])->
 Route::get('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
 Route::post('/mywatchlist',[WatchListController::class, 'search'])->middleware('authUser');
 Route::post('/addtowatchlist/{movie_id}',[WatchListController::class, 'addToWatchList'])->middleware('authUser');
-Route::post('/changestatus/{movie_id}',[WatchListController::class, 'changeStatus'])->middleware('authUser');
+Route::post('/changestatus/{wl_id}',[WatchListController::class, 'changeStatus'])->middleware('authUser');
 
 Route::get('/myprofile',[AuthController::class, 'myProfilePage'])->middleware('authLogin');
 Route::post('/updateprofile', [AuthController::class, 'updateProfile'])->middleware('authLogin');

@@ -35,48 +35,42 @@ class WatchListController extends Controller
             }
         }else{
             $movie = WatchList::where('user_id', Auth::user()->id)->leftJoin('movies', 'watch_lists.movie_id', '=', 'movies.id')->paginate(4);
-            $ids = DB::table('watch_lists')->join('movies', 'watch_lists.movie_id', '=', 'movies.id')->get();
         }
-        return view('myWatchList')->with(compact('movie','ids'));
-    }
-
-    public function addToWatchList(Request $request){
-        WatchList::create([
-            'user_id' => Auth::user()->id,
-            'movie_id' => $request->movie_id,
-            'status' => 'Planning'
-        ]);
-        $movie = DB::table('watch_lists')->join('movies','movies.id','=','watch_lists.movie_id')->get();
-        // dd($movie);
         return view('myWatchList')->with(compact('movie'));
     }
 
-    public function changeStatus(Request $request){
-        $id = $request->movie_id;
+    public function addToWatchList(Request $request){
+        $ids = $request->movie_id;
+        $valid = WatchList::where('movie_id','=',$ids)->get();
+        // dd($valid);
+        if(count($valid)!=0){
+            $movie = DB::table('watch_lists')->join('movies','movies.id','=','watch_lists.movie_id')->get();
+        }else{
+            WatchList::create([
+                'user_id' => Auth::user()->id,
+                'movie_id' => $request->movie_id,
+                'status' => 'Planning'
+            ]);
+            $movie = DB::table('watch_lists')->join('movies','movies.id','=','watch_lists.movie_id')->get();
+        }
+        return view('myWatchList')->with(compact('movie'));
+    }
+
+    public function changeStatus(Request $request, $wl_id){
+        $id = $request->id;
         $uid = Auth::user()->id;
-        WatchList::where('movie_id','=',$id)->delete();
 
         if($request->status == 'planned'){
             $change = 'Planning';
-            WatchList::create([
-                'user_id' => $uid,
-                'movie_id' => $id,
-                'status' => $change
-            ]);
+            WatchList::where('id_wl','=',$wl_id)->where('user_id','=',Auth::user()->id)->update(['status' => $change]);
         }elseif($request->status == 'watching'){
             $change = 'Watching';
-            WatchList::create([
-                'user_id' => $uid,
-                'movie_id' => $id,
-                'status' => $change
-            ]);
+            WatchList::where('id_wl','=',$wl_id)->where('user_id','=',Auth::user()->id)->update(['status' => $change]);
         }elseif($request->status == 'finished'){
             $change = 'Finished';
-            WatchList::create([
-                'user_id' => $uid,
-                'movie_id' => $id,
-                'status' => $change
-            ]);
+            WatchList::where('id_wl','=',$wl_id)->where('user_id','=',Auth::user()->id)->update(['status' => $change]);
+        }else{
+            WatchList::where('id_wl','=',$wl_id)->where('user_id','=',Auth::user()->id)->delete();
         }
 
         $movie = DB::table('movies')->join('watch_lists','movies.id','=','watch_lists.movie_id')->get();
