@@ -10,7 +10,7 @@ class ActorController extends Controller
 {
     public function getAllActor(Request $request){
         $search = $request->query('search');
-        $names = Actor::where('name', 'LIKE', "%$search%")->leftJoin('characters','characters.actor_id','=','actors.id')->leftJoin('movies','movies.id','=','characters.movie_id')->paginate(100)->appends(['search' => $search]);;
+        $names = Actor::where('name', 'LIKE', "%$search%")->leftJoin('characters','characters.actor_id','=','actors.id')->leftJoin('movies','movies.id','=','characters.movie_id')->paginate(100)->appends(['search' => $search]);
         return view('actor')->with(compact('names'));
     }
 
