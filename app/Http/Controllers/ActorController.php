@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Actor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Storage;
 
 class ActorController extends Controller
 {
@@ -16,18 +13,12 @@ class ActorController extends Controller
         $names = Actor::where('name', 'LIKE', "%$search%")->leftJoin('characters','characters.actor_id','=','actors.id')->leftJoin('movies','movies.id','=','characters.movie_id')->paginate(100)->appends(['search' => $search]);;
         return view('actor')->with(compact('names'));
     }
-    // $movie = WatchList::with('movie')
-    //         ->where('user_id', Auth::user()->id)
-    //         ->where('title', 'LIKE', "%$request->search%")
-    //         ->join('movies', 'movie_id', '=', 'movies.id')
-    //         ->paginate(4);
 
     public function showActorDetail(Request $request){
         $id = $request->actor_id;
         $actor = Actor::where('name','=',$id)->first();
         // dd($actor);
         $character = DB::table('characters')->where('actor_id','=',$actor->id)->join('movies', 'characters.movie_id','=','movies.id')->get();
-        // $movie = DB::table('movies')->where('movie_id','=',$id)->join('actors', 'characters.actor_id','=','actors.id')->get();
         return view('actorDetail')->with(compact('actor','character'));
     }
 
@@ -66,7 +57,6 @@ class ActorController extends Controller
         $path = public_path().'/storage/images' ;
         $file->move($path,$fileName);
 
-        // Storage::putFileAs('/public/images', $image, $image->getClientOriginalName());
         Actor::create([
             'name' => $name,
             'gender' => $gender,
@@ -105,9 +95,7 @@ class ActorController extends Controller
             'popularity' => 'required|numeric',
         ]);
 
-        // dd($request->actor_id);
         $actor = Actor::where('id', '=', $request->actor_id)->first();
-        // dd($actor);
 
         $actor->name = $name;
         $actor->gender = $gender;
