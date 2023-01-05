@@ -34,7 +34,7 @@
                     @auth
                     @if (Auth::user()->is_admin == 'member')
                     <div class=" d-flex justify-content-start" style="padding-right: 2rem">
-                        <form action="/addtowatchlist/{{$r->id}}" method="post" enctype="multipart/form-data">
+                        <form action="/addtowatchlist/{{$r->movie_id}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <button type="submit" class="btn btn-danger">+ Add to WatchList</button>
                         </form>
